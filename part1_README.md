@@ -2,21 +2,6 @@
 
 This is it--the grand finale!
 
-Note: There is only 1 part to the final project as folks have 
-
-## Team
-
-Team Name: (Something cool here)
-
-*TODO*:
-Update your Team member Names here (Up to 4) You will work with this same team through parts 1, 2, and 3.
-
--
--
--
--
-
-
 ## Final Project - Description
 
 The industry is getting positive buzz as Nolan and Shigeru have been talking about your studio. But dynamics change rapidly in the game industry, and your team has once again decided to part ways and form a new studio. Your team during this time has also developed a nice codebase of intellectual property, and has decided forming a 'game making' studio is the best option. Your team has decided it will start building an impressive piece of middleware (i.e. a tool or technology that is not a game) to showcase at the giant tradeshows (PAX East, GDC, E3, etc.) 
