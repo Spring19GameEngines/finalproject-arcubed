@@ -5,7 +5,7 @@
 Team Name: * Edit this to something cool here *
 
 *TODO*:
-Update your Team member Names here (Up to 4) You will work with this same team through parts 1, 2, and 3.
+Update your Team member Names here (Up to 4).
 
 1. *my name is...*
 2. *my name is...*
