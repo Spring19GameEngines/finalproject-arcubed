@@ -20,8 +20,8 @@ Update your Team member Names here (Up to 4).
 
 ## Assignment Milestones
 
-1. [First List your Minimum Viable Product](./mvp.md) (Note: This part should be pushed to github before you start working)
-2. [Part 1 README will be released first.](./part1_README.md)
+1. [First List your Minimum Viable Product](./mvp.md) (Note: This part should be pushed to github before you start working and within 1 week of opening your repository.)
+2. [Part 1 README](./part1_README.md) -- Note there is only 1 part to the final project after the MVP
 
 **Note**: There is only 1 part to the final project.
 
