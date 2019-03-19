@@ -19,8 +19,12 @@ For your final project, you will make a 'game maker'. That is, you will build a 
 ### Some notes on building a game maker
 
 1. Very likely you will need to integrate some GUI library into your system to make it useable.
+   - Think about this early--even draw a picture of what you think it should look like.
+   - Think about if this GUI needs to be in Python or in the C++ code.
 2. *Think* data-driven
    - This means your C++ handles your engine, and your scripting language should handle the game logic.
+3. You need to demonstrate useful game programming patterns with this system.  
+4. You need to implement at least one classic or original game using your game maker.
 
 ### Examples
 
@@ -44,7 +48,7 @@ You may implement an API (e.g. a physics engine, or a sound engine) that could b
       - You build a physics engine as a .dll, and use it with OGRE3D.
       - You build a physics engine and use it with pygame and all of the physics are handled by your library.
 3. You need to demonstrate useful game programming patterns with this system.
-4. You need to implement at least one classic or original game using our engine API.
+4. You need to implement at least one classic or original game using your engine API.
 
 ## Examples
 
@@ -77,7 +81,6 @@ For any option you choose, you have the following constraints:
 2. It is expected you may reuse some code from previous projects.
 3. 3rd party libraries for a physics engine are okay if you want to incorporate it into Option 1 for example (If you are implementing a physics engine from scratch in option 2, then you may not use a previously built physics engine.)
 4. You cannot build a tech demo with Unity3D or Unreal Engine.
-5. Most of your 
 
 Note--if you have not taken computer graphics, you should not be attempting to learn 3D graphics during this duration. It is highly recommended to work on a 2D project.
 
