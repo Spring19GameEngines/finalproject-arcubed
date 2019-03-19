@@ -31,18 +31,25 @@ See below some example game making tools for inspiration:
 
 ## Option 2 - Engine API Tech Demo (2D or 3D)
 
-Often a game mechanic or graphical technique is developed into a full game. For your final project you may build a high powered tech demo. This should be a short showcase of some feature demo that showcases your technology. The demo can be 2D or 3D.
+You may implement an API (e.g. a physics engine, or a sound engine) that could be plugged into another technology. For your final project you will then build a high powered tech demo showing off this API. This tech demo would be a short showcase of your engine API showcaseing your technology. The demo can be 2D or 3D--though I urge 2D to keep things smple.
 
 ## Examples
 
 See below some examples engine apis for inspiration.
 
-- https://www.youtube.com/watch?v=ni-SmkCY-Sw (2D game demo showing off only 1 feature that is sufficiently complex)
-- https://www.youtube.com/watch?v=4W8zxAV8RRY (2D game engine lighting effects)
-- https://www.youtube.com/watch?v=LseTVMkG7V8 (An even better 2D game engine lighting effects, something like this is final project worthy if incorporated into platformer)
-- https://www.youtube.com/watch?v=gLAYBdHxfjs (Shows a few of the features of a game tool)
-- https://www.youtube.com/watch?v=jVlxmC2qBGU (Unity3D Tech demo showing off one simple but high powered toggable feature in an editor).
+- A physics engine with many samples
+   - https://www.youtube.com/watch?v=ni-SmkCY-Sw (2D game demo showing off only 1 feature that is sufficiently complex)
+- This is a illumination/lighting engine 
+   - https://www.youtube.com/watch?v=4W8zxAV8RRY (2D game engine lighting effects)
+   - This project does not however have much *wow* factor. (Probably a B- project)
+- Here is another illumination engine
+   - https://www.youtube.com/watch?v=LseTVMkG7V8 
+   - An even better 2D game engine lighting effects, something like this is final project worthy if incorporated into platformer. (Probably in the B+/A- range as it looks like some actual physics are being used, and there is a neat 'debugging' mode to show where light is reaching)
+- Here is another lighting engine 
+   - https://www.youtube.com/watch?v=jVlxmC2qBGU (Unity3D Tech demo showing off one simple but high powered toggable feature in an editor).
+   - This project has a nice GUI, updates in realtime, and looks like it could 
 - https://www.youtube.com/watch?v=wB1pcXtEwIs Shows off a subset of a physics engine in use.
+   - Here is a more concrete example of the API that would be implemented in tutorial form: https://www.youtube.com/watch?v=3Oay1YxkP5c&list=PLEETnX-uPtBXm1KEr_2zQ6K_0hoGH6JJ0
 
 ## Option 3
 
