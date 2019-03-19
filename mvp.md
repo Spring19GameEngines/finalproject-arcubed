@@ -6,7 +6,8 @@ A Minimum Viable Product (MVP) is the smallest subset of features that you consi
 
 Make a list below of the features you consider to be in your MVP. Then make a list of features that are 'stretch goals' that you think you can achieve. You should be able to achieve all of your MVP features, and a partial subset of your stretch goals.
 
-(TODO: Edit these)
+(**TODO**: Edit these)
+
 (MVP) Minimal Subset of features you **will** definitely implement.
 - *feature 1*
 - *feature 2*
