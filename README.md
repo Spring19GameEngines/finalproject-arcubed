@@ -2,7 +2,7 @@
 
 ## Team
 
-Team Name: * Edit this to something cool here *
+Team Name: *Edit this to something cool here*
 
 *TODO*:
 Update your Team member Names here (Up to 4).
@@ -23,6 +23,12 @@ Update your Team member Names here (Up to 4).
 2. [Part 1 README will be released first.](./part1_README.md)
 
 **Note**: There is only 1 part to the final project.
+
+## Notes on working in teams
+
+* [What Makes a Winning Game Development Team?](http://www.bitmascot.com/what-makes-a-successful-game-team/)
+* [The 3 C's of being a captain](https://appliedsportpsych.org/resources/resources-for-athletes/the-3-c-s-of-being-a-captain/)
+* [Etiquette for Pair Programming](https://dzone.com/articles/etiquette-for-pair-programming)
 
 ## Universal Resources
 
