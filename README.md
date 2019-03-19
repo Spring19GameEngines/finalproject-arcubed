@@ -16,6 +16,7 @@ Update your Team member Names here (Up to 4).
 
 - Make sure everyone has a way to work on this codebase, with a common set of tools.
 - Everyone should make code contributions to the repository (i.e. everyone should have some commits in the project log)
+- Start by defining your minimum viable product. (See milestones section)
 
 ## Assignment Milestones
 
