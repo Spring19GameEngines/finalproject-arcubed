@@ -14,7 +14,9 @@ The industry is getting positive buzz as Nolan and Shigeru have been talking abo
 
 For your final project, you will make a 'game maker'. That is, you will build a tool that someone with no C++ knowledge can use. Our pybind11 lab is a good starting point, though you are allowed to explore other technologies like [lua](https://www.lua.org/). For this project, you will build an API (i.e. 2D API or 3D API) for your games and a GUI environment for building your game.
 
-### Some examples for inspiration of game makers
+### Examples
+
+See below some example game making tools for inspiration:
 
 - Look on the left panel to see the API for the Love2D engine: https://love2d.org/wiki/Main_Page
 - Look at Gamemakers API for inspiration of what commands are exposed. http://docs2.yoyogames.com/
@@ -28,21 +30,30 @@ For your final project, you will make a 'game maker'. That is, you will build a 
 
 Often a game mechanic or graphical technique is developed into a full game. For your final project you may build a high powered tech demo. This should be a short showcase of some feature demo that showcases your technology. The demo can be 2D or 3D.
 
-## Some examples for inspiration of tech demos
+## Examples
+
+See below some examples engine apis for inspiration.
 
 - https://www.youtube.com/watch?v=ni-SmkCY-Sw (2D game demo showing off only 1 feature that is sufficiently complex)
 - https://www.youtube.com/watch?v=4W8zxAV8RRY (2D game engine lighting effects)
 - https://www.youtube.com/watch?v=LseTVMkG7V8 (An even better 2D game engine lighting effects, something like this is final project worthy if incorporated into platformer)
 - https://www.youtube.com/watch?v=gLAYBdHxfjs (Shows a few of the features of a game tool)
 - https://www.youtube.com/watch?v=jVlxmC2qBGU (Unity3D Tech demo showing off one simple but high powered toggable feature in an editor).
+- https://www.youtube.com/watch?v=wB1pcXtEwIs Shows off a subset of a physics engine in use.
 
 ## Option 3
 
 If neither of these options satisfy you--talk to the instructor if there is something you are more excited about. Generally speaking, most folks should be attempting or targeting projects closer to option 1's for the final project.
 
-### Constraints on Options 1,2,3
+# Constraints on Options 1,2,3
 
-The constraints are that you have to build the majority of your technology. 3rd party libraries for a physics engine are okay, and must be cited. 3rd party game or graphics engines may not be used (e.g. you cannot build a tech demo with Ogre3D or Unity3D).
+For any option you choose, you have the following constraints:
+
+1. Your team must build the majority of your technology.
+   - If you use 3rd party code (Say a compression library for example--which would be fine), then cite your source.
+2. 3rd party libraries for a physics engine are okay if you want to incorporate it into Option 1 for example (If you are implementing a physics engine from scratch in option 2, then you may not use a previously built physics engine.)
+3. You cannot build a tech demo with Unity3D or Unreal Engine.
+4. Most of your 
 
 Note--if you have not taken computer graphics, you should not be attempting to learn 3D graphics during this duration. It is highly recommended to work on a 2D project.
 
