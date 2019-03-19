@@ -12,7 +12,9 @@ The industry is getting positive buzz as Nolan and Shigeru have been talking abo
 
 ## Option 1 - Game Maker
 
-For your final project, you will make a 'game maker'. That is, you will build a tool that someone with no C++ knowledge can use. Our pybind11 lab is a good starting point, though you are allowed to explore other technologies like [lua](https://www.lua.org/). For this project, you will build an API (i.e. 2D API or 3D API) for your games and a GUI environment for building your game. **You will** implement part of at least 1 classic game we have not previously implemented (e.g. pacman, asteroids, snake, super mario, etc.) using your engine to demonstrate how your engine is used.
+For your final project, you will make a 'game maker'. That is, you will build a tool that someone with no C++ knowledge can use. Our pybind11 lab is a good starting point, though you are allowed to explore other technologies like [lua](https://www.lua.org/). For this project, you will build an API (i.e. 2D API or 3D API) for your games and a GUI environment for building your game. 
+
+**You will** implement part of at least 1 classic or original game we have not previously implemented (e.g. pacman, asteroids, snake, super mario, etc.) using your engine to demonstrate how your engine is used.
 
 ### Some notes on building a game maker
 
@@ -32,6 +34,17 @@ See below some example game making tools for inspiration:
 ## Option 2 - Engine API Tech Demo (2D or 3D)
 
 You may implement an API (e.g. a physics engine, or a sound engine) that could be plugged into another technology. For your final project you will then build a high powered tech demo showing off this API. This tech demo would be a short showcase of your engine API showcaseing your technology. The demo can be 2D or 3D--though I urge 2D to keep things smple.
+
+### Some notes on building an engine API
+
+1. For this project you are building a C/C++ API to solve a specific game engine need (e.g. a physics engine, a sound engine).
+2. You need to demonstrate its usefulness in a concrete way.
+   - Building your engine as a shared library(.so, .dylib, .dll) and using it in another engine.
+   - Concrete examples:
+      - You build a physics engine as a .dll, and use it with OGRE3D.
+      - You build a physics engine and use it with pygame and all of the physics are handled by your library.
+3. You need to demonstrate useful game programming patterns with this system.
+4. You need to implement at least one classic or original game using our engine API.
 
 ## Examples
 
