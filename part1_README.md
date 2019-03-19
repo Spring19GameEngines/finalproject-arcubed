@@ -12,7 +12,13 @@ The industry is getting positive buzz as Nolan and Shigeru have been talking abo
 
 ## Option 1 - Game Maker
 
-For your final project, you will make a 'game maker'. That is, you will build a tool that someone with no C++ knowledge can use. Our pybind11 lab is a good starting point, though you are allowed to explore other technologies like [lua](https://www.lua.org/). For this project, you will build an API (i.e. 2D API or 3D API) for your games and a GUI environment for building your game.
+For your final project, you will make a 'game maker'. That is, you will build a tool that someone with no C++ knowledge can use. Our pybind11 lab is a good starting point, though you are allowed to explore other technologies like [lua](https://www.lua.org/). For this project, you will build an API (i.e. 2D API or 3D API) for your games and a GUI environment for building your game. **You will** implement part of at least 1 classic game we have not previously implemented (e.g. pacman, asteroids, snake, super mario, etc.) using your engine to demonstrate how your engine is used.
+
+### Some notes on building a game maker
+
+1. Very likely you will need to integrate some GUI library into your system to make it useable.
+2. *Think* data-driven
+   - This means your C++ handles your engine, and your scripting languaeg should handle the game logic.
 
 ### Examples
 
@@ -21,8 +27,6 @@ See below some example game making tools for inspiration:
 - Look on the left panel to see the API for the Love2D engine: https://love2d.org/wiki/Main_Page
 - Look at Gamemakers API for inspiration of what commands are exposed. http://docs2.yoyogames.com/
 - Here is an example showing integrating an API (through a console interface) with a script language to make changes and build a game in realtime. https://www.youtube.com/watch?v=b8RyQSvmrEU
-- https://www.youtube.com/watch?v=oU69bjOMTUc (Another platformer, shows off some cool extensions to our project, with transparency, particles, etc.)
-- https://www.youtube.com/watch?v=o59PVYfKlzQ (A little RPG like game. Neat effects, and can benefit from some sort of scripting engine for battle sequences).
 - https://www.youtube.com/watch?v=5ZuQIbMEjLw (Here is GoDot engine. I would look to GoDot and GameMaker as inspiration).
 
 ## Option 2 - Engine API Tech Demo (2D or 3D)
