@@ -8,7 +8,7 @@ Make a list below of the features you consider to be in your MVP. Then make a li
 
 (**TODO**: Edit these)
 
-(MVP) Minimal Subset of features you **will** definitely implement.
+(MVP) Minimal Subset of features you **will** definitely implement:
 - *feature 1*
 - *feature 2*
 - *etc.*
