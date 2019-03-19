@@ -67,12 +67,14 @@ Note--if you have not taken computer graphics, you should not be attempting to l
 
 Make sure you filled out the [Minimum Viable Product](./mvp.md)
 
-# Documentation/Portfolio Requirements (For either option)
+# Documentation/Portfolio Requirements (For any option)
 
 ## Documentation
-Fire up 'Doxygen' <a href="http://www.stack.nl/~dimitri/doxygen/">(Doxygen webpage)</a> to document the source code and automatically generate .html pages. Your documentation should cover your classes and functions.
+Fire up 'Doxygen' <a href="http://www.stack.nl/~dimitri/doxygen/">(Doxygen webpage)</a> to document the source code and automatically generate .html pages. 
 
-Additionally, you documentation should have instructions on how to obtain, build, and run your final project.
+- Your documentation should cover your classes and functions.
+- Your documentation should have instructions on how to obtain, build, and run your final project. 
+   - It must be trivial for a TA or instructor to run your project.
 
 ## Build (binary file)
 You need to have a compiled binary of your game. You can assume a target audience of either a 64-bit Mac, Ubuntu Linux, or Windows 10 machine. There should additionally be instructions about how to compile your code from source.
@@ -81,7 +83,23 @@ You need to have a compiled binary of your game. You can assume a target audienc
 A post mortem in games is a look back at what could be improved. Write a brief (2-3 paragraphs) on what could be improved if you had an additional 8 weeks to work on this project. Where would you allocate time, what tools would you build, would you use any different tools, etc.
 
 ## Website
-Your documentation, a link to your binary, and your post mortem should be put together on a 1-page .html page. Additionally, provide a 1 minute video trailer(but 1 minute I suggest) and at least 3 screenshots of your game. This website will be the first place I look to grab your project. (Additionally, I think it is important to build a portfolio of your game development works!)
+
+This website will be the first place I look to grab your project. (Additionally, I think it is important to build a portfolio of your game development works!)
+
+Your 1-page .html website includes:
+
+- Your documentation
+- A link to your binary
+- Uour post mortem
+- A 1 minute video trailer
+- At least 3 screenshots of your game
+- At least 1 diagram showing off the architecture of your code
+   - This can be a system diagram, a UML diagram of your classes, or your overall architecture.
+   - examples:
+      - https://www.gameenginebook.com/figures.html
+      - http://tombstoneengine.com/architecture.php
+      - https://www.ogre3d.org/docs/manual18/images/uml-overview.png
+         - Found on this page https://www.ogre3d.org/docs/manual18/manual_4.html#The-Core-Objects
 
 ## Project Hieararchy
 
