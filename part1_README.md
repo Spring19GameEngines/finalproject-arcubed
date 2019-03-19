@@ -4,7 +4,9 @@ This is it--the grand finale!
 
 # Final Project - Description
 
-The industry is getting positive buzz as Nolan and Shigeru have been talking about your studio. But dynamics change rapidly in the game industry, and your team has once again decided to part ways and form a new studio. Your team during this time has also developed a nice codebase of intellectual property, and has decided forming a 'game making' studio is the best option. Your team has decided it will start building an impressive piece of middleware (i.e. a tool or technology that is not a game) to showcase at the giant tradeshows (PAX East, GDC, E3, etc.) 
+<img width="400px" src="./media/greats.png">
+
+The industry is getting positive buzz as Nolan and Shigeru have been talking about your game development skills. But dynamics change rapidly in the game industry--your team has once again decided to part ways and form a new game studio. Your team during this time has  developed a nice codebase of intellectual property, and has decided forming a 'game making' studio around this technology is the best option. Building an impressive piece of middleware (i.e. a tool or technology that is not a game) to showcase at the giant tradeshows ([PAX East](http://east.paxsite.com/), [GDC](https://www.gdconf.com/), [E3](https://www.e3expo.com/), etc.) is your next task!
 
 # Options
 
