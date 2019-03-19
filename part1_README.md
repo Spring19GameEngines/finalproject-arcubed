@@ -50,9 +50,10 @@ For any option you choose, you have the following constraints:
 
 1. Your team must build the majority of your technology.
    - If you use 3rd party code (Say a compression library for example--which would be fine), then cite your source.
-2. 3rd party libraries for a physics engine are okay if you want to incorporate it into Option 1 for example (If you are implementing a physics engine from scratch in option 2, then you may not use a previously built physics engine.)
-3. You cannot build a tech demo with Unity3D or Unreal Engine.
-4. Most of your 
+2. It is expected you may reuse some code from previous projects.
+3. 3rd party libraries for a physics engine are okay if you want to incorporate it into Option 1 for example (If you are implementing a physics engine from scratch in option 2, then you may not use a previously built physics engine.)
+4. You cannot build a tech demo with Unity3D or Unreal Engine.
+5. Most of your 
 
 Note--if you have not taken computer graphics, you should not be attempting to learn 3D graphics during this duration. It is highly recommended to work on a 2D project.
 
@@ -115,11 +116,11 @@ There should be some logical hierarchy for your project. Look to previous assign
     </tr>
     <tr>
       <td>25% (Documentation/Portfolio Requirements)</td>
-      <td align="left">On meeting the requirements above</td>
+      <td align="left">On meeting the requirements above. Do not forget the diagram showing off your solutions architecture</td>
     </tr>    
     <tr>
-      <td>25% (Polish)</td>
-      <td align="left">On the polish of your final project (did it work as intended, were there bugs, did I have to struggle to get your tool running)</td>
+      <td>25% (Engineering/Design Patterns)</td>
+      <td align="left">On the polish of your final project (did it work as intended, were there bugs, did I have to struggle to get your tool running, was your solution well engineered, were there patterns used, etc.)</td>
     </tr>
     <tr>
       <td>25%  (Minimum viable product)</td>
@@ -127,7 +128,7 @@ There should be some logical hierarchy for your project. Look to previous assign
     </tr>
     <tr>
       <td>25%% (Wow Factor)</td>
-      <td align="left">On the creativity and overall 'wow' factor of your project. Some of this requirement *could* be met with the following idea. But you are not limited to this rubric. Was there a cool feature or surprise that got me excited about the project? Does this project have potential to be extended in the future? Were there creative additional tools that supported your work. Was there something not covered in class that you were excited about, learned, and implemented anyway? (Document this to bring to my attention if so!)</td>
+      <td align="left">On the creativity and overall 'wow' factor of your project. Was there a cool feature or surprise that got me excited about the project? Does this project have potential to be extended in the future? Were there creative additional tools that supported your work. Was there something not covered in class that you were excited about, learned, and implemented anyway? (Document this to bring to my attention if so!)</td>
     </tr>
   </tbody>
 </table>
