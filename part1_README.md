@@ -20,7 +20,7 @@ For your final project, you will make a 'game maker'. That is, you will build a 
 
 1. Very likely you will need to integrate some GUI library into your system to make it useable.
 2. *Think* data-driven
-   - This means your C++ handles your engine, and your scripting languaeg should handle the game logic.
+   - This means your C++ handles your engine, and your scripting language should handle the game logic.
 
 ### Examples
 
