@@ -21,7 +21,6 @@ See below some example game making tools for inspiration:
 - Look on the left panel to see the API for the Love2D engine: https://love2d.org/wiki/Main_Page
 - Look at Gamemakers API for inspiration of what commands are exposed. http://docs2.yoyogames.com/
 - Here is an example showing integrating an API (through a console interface) with a script language to make changes and build a game in realtime. https://www.youtube.com/watch?v=b8RyQSvmrEU
-
 - https://www.youtube.com/watch?v=oU69bjOMTUc (Another platformer, shows off some cool extensions to our project, with transparency, particles, etc.)
 - https://www.youtube.com/watch?v=o59PVYfKlzQ (A little RPG like game. Neat effects, and can benefit from some sort of scripting engine for battle sequences).
 - https://www.youtube.com/watch?v=5ZuQIbMEjLw (Here is GoDot engine. I would look to GoDot and GameMaker as inspiration).
