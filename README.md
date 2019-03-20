@@ -4,13 +4,13 @@
 
 Team Name: *Edit this to something cool here*
 
-*TODO*:
+
 Update your Team member Names here (Up to 4).
 
-1. *my name is...*
-2. *my name is...*
-3. *my name is...*
-4. *my name is...*
+1. Ryan "___Listen___" Teng
+2. Roger "_Yikes_" Chen
+3. Andrew "_What Are You Saying_" Alcala
+4. Raymond "_TO DO:_" Namar
 
 ## Logistics
 
