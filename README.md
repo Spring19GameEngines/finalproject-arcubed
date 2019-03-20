@@ -10,7 +10,7 @@ Update your Team member Names here (Up to 4).
 1. Ryan "___Listen___" Teng
 2. Roger "_Yikes_" Chen
 3. Andrew "_What Are You Saying_" Alcala
-4. Raymond "_TO DO:_" Namar
+4. Raymond "_Todd Howard_" Namar
 
 ## Logistics
 
