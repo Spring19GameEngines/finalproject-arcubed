@@ -9,13 +9,17 @@ Make a list below of the features you consider to be in your MVP. Then make a li
 (**TODO**: Edit these)
 
 (MVP) Minimal Subset of features you **will** definitely implement:
-- *feature 1*
-- *feature 2*
-- *etc.*
+- Engine class that encapsulates the game and it's state
+- GameObjects that users can create and add to the engine
+- Camera Class
+- Component classes
+-- Collision
+-- Audio
+-- Animation
+-- Input
 
 Strecth Goals:
-- *features 1*
-- *feature 2*
-- *etc.*
+- AI Behavior (Behavior trees)
+- User created scripts
 
 Note: It is possible you do not hit all of your stretch goals. You should not edit this document to attempt to make your plan look perfect either.
