@@ -1,0 +1,10 @@
+#ifndef FINALPROJECT_ARCUBED_BOXCOLLIDER_H
+#define FINALPROJECT_ARCUBED_BOXCOLLIDER_H
+
+
+class BoxCollider {
+
+};
+
+
+#endif

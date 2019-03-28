@@ -1,0 +1,9 @@
+#ifndef FINALPROJECT_ARCUBED_CAMERA_H
+#define FINALPROJECT_ARCUBED_CAMERA_H
+
+
+class Camera {
+
+};
+
+#endif
