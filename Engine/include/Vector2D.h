@@ -2,6 +2,8 @@
 #define Vector2D_h
 
 #include <cmath>
+#include <iostream>
+#include <vector>
 
 // Forward references of each of the structs
 struct Vector2D;
@@ -17,6 +19,10 @@ struct Vector2D {
   Vector2D(float a, float b) {
     x = a;
     y = b;
+  }
+
+  std::string toString() {
+    return "(" + std::to_string(x) + ", " + std::to_string(y) + ")";
   }
 
   //! Multiply the vector by a uniform-scalar.
