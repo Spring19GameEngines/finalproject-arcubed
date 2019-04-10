@@ -9,20 +9,31 @@ using namespace std;
 
 class Component {
  public:
-  //! constructor - Uses Default name and default position
-  Component();
-  //! updates the object at a high priority
-  // void earlyUpdate();
-  //! updates the object at a normal priority
+  // constructor
+  Component(int id) { this.id = id; };
+
+  //! updates this component
   virtual void update() = 0;
-  //! updates the object at a low priority
-  // void lateUpdate();
-  virtual void receive(int message) = 0;
-  string toString() { return name; }
+  // Sends a message to the parent component container
+  void send(int message) {
+    if (container != null) {
+      container.send(message, this.id);
+    } else {
+      std::cout << "Failed to send message" << std::endl;
+    }
+  }
+  void receive(int message, int srcID) = 0;
+  void setContainer(ComponentContainer container) {
+    this.container = container;
+  }
+  string toString() { return id; }
+
+ protected:
+  ComponentContainer container;
 
  private:
   // Variables
-  string name;
+  int id;
 };
 
 #endif
