@@ -3,8 +3,7 @@
 
 #include <iostream>
 #include <vector>
-#include "TinyMath.h"
-
+#include "ComponentContainer.h"
 using namespace std;
 
 class Component {
@@ -23,10 +22,11 @@ class Component {
     }
   }
   void receive(int message, int srcID) = 0;
-  void setContainer(ComponentContainer container) {
+  void setContainer(ComponentContainer* container) {
     this.container = container;
   }
-  string toString() { return id; }
+  int getID() { return id; }
+  //   string toString() { return id; }
 
  protected:
   ComponentContainer container;

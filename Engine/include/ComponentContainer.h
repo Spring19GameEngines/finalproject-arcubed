@@ -3,8 +3,7 @@
 
 #include <iostream>
 #include <vector>
-#include "TinyMath.h"
-
+#include "Component.h"
 using namespace std;
 
 class ComponentContainer {
@@ -14,22 +13,22 @@ class ComponentContainer {
 
   // updates each component
   void update() {
-    for (Component c : components) {
-      c.update();
+    for (Component* c : components) {
+      c->update();
     }
   };
 
   // Adds the given component to this container
-  void addComponent(Component comp) {
-    comp.setContainer(this);
+  void addComponent(Component* comp) {
+    comp->setContainer(this);
     components.push_back(comp);
   };
 
   // Removes a component with the given ID from this container
   void removeComponent(int id) {
-    for (int i = 0; i < components.length(); i++) {
+    for (int i = 0; i < components.size(); i++) {
       if (components[i] != NULL) {
-        if (components[i].id = id) {
+        if (components[i]->getID() == id) {
           components.erase(components.begin() + i);
         }
       }
@@ -37,10 +36,10 @@ class ComponentContainer {
   };
 
   // Get a component with the given id
-  Component getComponent(int id) {
-    for (int i = 0; i < components.length(); i++) {
-      if (components[i] != NULL) {
-        if (components[i].id = id) {
+  Component* getComponent(int id) {
+    for (int i = 0; i < components.size(); i++) {
+      if (components[i] != nullptr) {
+        if (components[i]->getID() == id) {
           return components[i];
         }
       }
@@ -48,11 +47,11 @@ class ComponentContainer {
   }
 
   // Get a vector of all components
-  vector<Component> getComponents() { return components; };
+  vector<Component*> getComponents() { return components; };
 
   // Send this message to all components
   void send(int message, int srcID) {
-    for (int i = 0; i < components.length(); i++) {
+    for (int i = 0; i < components.size(); i++) {
       if (components[i] != NULL) {
         components[i]->receive(message, srcID);
       }
@@ -60,7 +59,7 @@ class ComponentContainer {
   };
 
  private:
-  vector<Component> components;
+  vector<Component*> components;
 };
 
 #endif

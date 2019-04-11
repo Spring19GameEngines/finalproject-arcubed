@@ -11,7 +11,7 @@ using namespace std;
 class GameObject {
  public:
   //! constructor - Uses Default name and default position
-  virtual void GameObject() = 0;
+  GameObject(string name);
 
   //! constructor - Sets the name and location of the GameObject
   GameObject(string name, float x, float y) {
@@ -23,7 +23,7 @@ class GameObject {
   // updates the object and it's components
   void update() { components.update(); };
 
-  string toString() { return name + " at " + pos; }
+  //   string toString() { return name + " at " + pos; }
 
  protected:
   // Variables
