@@ -9,23 +9,23 @@ using namespace std;
 class Component {
  public:
   // constructor
-  Component(int id) { this.id = id; };
+  Component(string id) { this.id = id; };
 
   //! updates this component
   virtual void update() = 0;
   // Sends a message to the parent component container
-  void send(int message) {
-    if (container != null) {
-      container.send(message, this.id);
+  void send(string msg) {
+    if (container != NULL) {
+      container.send(msg, this.id);
     } else {
       std::cout << "Failed to send message" << std::endl;
     }
   }
-  void receive(int message, int srcID) = 0;
+  void receive(string msg, string srcID) = 0;
   void setContainer(ComponentContainer* container) {
     this.container = container;
   }
-  int getID() { return id; }
+  string getID() { return id; }
   //   string toString() { return id; }
 
  protected:
@@ -33,7 +33,7 @@ class Component {
 
  private:
   // Variables
-  int id;
+  string id;
 };
 
 #endif

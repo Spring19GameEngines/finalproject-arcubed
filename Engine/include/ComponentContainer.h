@@ -25,7 +25,7 @@ class ComponentContainer {
   };
 
   // Removes a component with the given ID from this container
-  void removeComponent(int id) {
+  void removeComponent(string id) {
     for (int i = 0; i < components.size(); i++) {
       if (components[i] != NULL) {
         if (components[i]->getID() == id) {
@@ -36,7 +36,7 @@ class ComponentContainer {
   };
 
   // Get a component with the given id
-  Component* getComponent(int id) {
+  Component* getComponent(string id) {
     for (int i = 0; i < components.size(); i++) {
       if (components[i] != nullptr) {
         if (components[i]->getID() == id) {
@@ -50,10 +50,10 @@ class ComponentContainer {
   vector<Component*> getComponents() { return components; };
 
   // Send this message to all components
-  void send(int message, int srcID) {
+  void send(string msg, string srcID) {
     for (int i = 0; i < components.size(); i++) {
       if (components[i] != NULL) {
-        components[i]->receive(message, srcID);
+        components[i]->receive(msg, srcID);
       }
     }
   };
