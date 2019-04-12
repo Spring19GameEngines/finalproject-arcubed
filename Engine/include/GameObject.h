@@ -30,6 +30,7 @@ class GameObject {
   Vector2D pos;
   string name;
   ComponentContainer components;
+  BoxCollider *collider;
 };
 
 #endif
