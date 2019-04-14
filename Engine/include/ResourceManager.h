@@ -17,6 +17,7 @@
 #include <string>
 #include <tuple>
 #include <unordered_map>
+#include "GameObject.h"
 
 /*! \brief Manages resources and ensures objects are only loaded once.
  * Provides support for loading textures, fonts, text, background music, and
