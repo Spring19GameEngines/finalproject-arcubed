@@ -16,7 +16,7 @@ class InputHandler {
 
 // HAVE TO COME BACK TO THIS TO FIX
  private:
-'  Command* buttonW_;
+   Command* buttonW_;
    Command* buttonA_;
    Command* buttonS_;
    Command* buttonD_;
