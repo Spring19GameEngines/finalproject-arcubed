@@ -67,8 +67,9 @@ string[] getSoundAliases() {
 }
 
 // default, if a msg contains a sound alias, queue it.
-void SoundComponent::receive(string msg, string srcID) {
+void SoundComponent::receive(string action, vector <string> args) {
   if (msgAliases.find(msg) != msgAliases.end()) {
     playSound(msgAliases[msg]);
   }
+  return;
 }

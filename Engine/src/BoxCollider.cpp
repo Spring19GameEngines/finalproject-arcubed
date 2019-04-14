@@ -1,25 +1,33 @@
 #include "BoxCollider.h"
 
-BoxCollider::BoxCollider(float x, float y, float width, float height) : x(x), y(y), width(width), height(height) {};
+using namespace std;
 
-/**
- * Collision function. Currently assumes that x and y are at the top left of the sprite
- *
- * @param x2
- * @param y2
- * @param width2
- * @param height2
- * @return
- */
-vector <GameObject> BoxCollider::checkCollision(vector <GameObject> objects) {
-    vector <GameObject> hits;
-    for (int i = 0; i < objects.size(); i++) {
+vector <string> BoxCollider::receive(string action, vector <string> args) {
+    vector <string> ret;
+    if (action == "checkcollision") {
+        ret = this->checkCollision(args);
+    }
+    if (action == "setwidth") {
+        this->setWidth(stof(args[0]));
+    }
+    if (action == "setheight") {
+        this->setWidth(stof(args[0]));
+    }
+    if (action == "shiftposition") {
+        this->setWidth(stof(args[0]), stof(args[1]));
+    }
+    return ret;
+}
+
+vector <string> BoxCollider::checkCollision(vector <string> boxColliders) {
+    vector <string> hits;
+    for (int i = 0; i < boxColliders.size(); i++) {
         if (
-                x < objects[i]->BoxCollider->x + objects[i]->BoxCollider->width &&
-                x + width > objects[i]->BoxCollider->x &&
-                y < objects[i]->BoxCollider->y + objects[i]->BoxCollider->height &&
-                y + height > objects[i]->BoxCollider->y) {
-            hits.push_back(objects[i]);
+                x < boxColliders[i]->x + boxColliders[i]->width &&
+                x + width > boxColliders[i]->x &&
+                y < boxColliders[i]->y + boxColliders[i]->height &&
+                y + height > boxColliders[i]->y) {
+            hits.push_back(boxColliders[i]->id);
         }
     }
     return hits;

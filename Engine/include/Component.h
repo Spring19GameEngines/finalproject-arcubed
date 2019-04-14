@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "ComponentContainer.h"
+#include "GameObject.h"
 using namespace std;
 
 class Component {
@@ -13,27 +14,30 @@ class Component {
 
   //! updates this component
   virtual void update() = 0;
+
   // Sends a message to the parent component container
-  void send(string msg) {
+  void send(string action, vector<string> args) {
     if (container != NULL) {
-      container.send(msg, this.id);
+      container.send(action, args);
     } else {
       std::cout << "Failed to send message" << std::endl;
     }
   }
-  void receive(string msg, string srcID) = 0;
+
+  vector<string> receive(string action, vector<string> args) = 0;
   void setContainer(ComponentContainer* container) {
     this.container = container;
   }
   string getID() { return id; }
-  //   string toString() { return id; }
 
  protected:
   ComponentContainer container;
+  string id;
+  GameObject go;
 
  private:
   // Variables
-  string id;
+
 };
 
 #endif

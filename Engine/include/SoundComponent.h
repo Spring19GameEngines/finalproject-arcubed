@@ -22,7 +22,7 @@ class SoundComponent : public Component {
   // Allows the user to set a alias for a loaded sound path
   void setSoundAlias(string msg, string existingPath);
   // Receive messages from the component container
-  void receive(string msg, string srcID);
+  vector<string> receive(string action, vector<string> args);
   // Returns an array of all loaded sounds paths
   string[] getLoadedPaths();
   // Returns an array of all sound aliases

@@ -50,10 +50,10 @@ class ComponentContainer {
   vector<Component*> getComponents() { return components; };
 
   // Send this message to all components
-  void send(string msg, string srcID) {
+  void send(string action, vector<string> args) {
     for (int i = 0; i < components.size(); i++) {
       if (components[i] != NULL) {
-        components[i]->receive(msg, srcID);
+        components[i]->receive(action, args);
       }
     }
   };
