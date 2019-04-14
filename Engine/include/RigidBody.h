@@ -15,10 +15,10 @@ public:
         this->drag = 1.0f;
         this->useGravity = true;
         this->isKinematic = true;
-        this->id = "rigidbody";
         this->velX = 0f;
         this->velY = 0f;
         this->gravity = 4f;
+        this->id = "rigidbody";
     };
 
     void update();
@@ -26,8 +26,9 @@ public:
 
 private:
     //variables
-    float x, y, width, height, mass, drag, velX, velY, accelX, accelY, maxVelX, maxVelY, gravity;
+    float x, y, width, height, mass, drag, velX, velY, maxVelX, maxVelY, gravity;
     bool useGravity, isKinematic;
+    GameObject go;
 
     //functions
     void setWidth(float w);

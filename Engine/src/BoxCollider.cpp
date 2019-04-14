@@ -1,4 +1,5 @@
 #include "BoxCollider.h"
+#include "ResourceManager.h"
 
 using namespace std;
 
@@ -19,8 +20,9 @@ using namespace std;
 //    return ret;
 //}
 
-vector <string> BoxCollider::checkCollision(vector <string> boxColliders) {
+vector <string> BoxCollider::checkCollision() {
     vector <string> hits;
+    vector<gameObject*> boxColliders = ResourceManager::getInstance()->gameObjects;
     for (int i = 0; i < boxColliders.size(); i++) {
         if (
                 x < boxColliders[i]->x + boxColliders[i]->width &&
