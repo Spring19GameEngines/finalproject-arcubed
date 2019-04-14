@@ -14,6 +14,9 @@ class Component {
 
   //! updates this component
   virtual void update() = 0;
+//
+//  //! takes a string name Action, and performs the action based upon parameters
+//  virtual vector<string> action(string action, vector<string> args) = 0;
 
   // Sends a message to the parent component container
   void send(string action, vector<string> args) {

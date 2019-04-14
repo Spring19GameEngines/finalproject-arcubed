@@ -16,6 +16,9 @@ public:
         this->useGravity = true;
         this->isKinematic = true;
         this->id = "rigidbody";
+        this->velX = 0f;
+        this->velY = 0f;
+        this->gravity = 4f;
     };
 
     void update();
@@ -23,12 +26,13 @@ public:
 
 private:
     //variables
-    float x, y, width, height, mass, drag, velX, velY;
+    float x, y, width, height, mass, drag, velX, velY, accelX, accelY, maxVelX, maxVelY, gravity;
     bool useGravity, isKinematic;
 
     //functions
     void setWidth(float w);
     void setHeight(float h);
+    void setGrav(float g)
     void shiftPosition(float x, float y);
     void setMass(float mass);
     void setDrag(float drag);

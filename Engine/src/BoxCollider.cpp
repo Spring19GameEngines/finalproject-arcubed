@@ -2,22 +2,22 @@
 
 using namespace std;
 
-vector <string> BoxCollider::receive(string action, vector <string> args) {
-    vector <string> ret;
-    if (action == "checkcollision") {
-        ret = this->checkCollision(args);
-    }
-    if (action == "setwidth") {
-        this->setWidth(stof(args[0]));
-    }
-    if (action == "setheight") {
-        this->setWidth(stof(args[0]));
-    }
-    if (action == "shiftposition") {
-        this->setWidth(stof(args[0]), stof(args[1]));
-    }
-    return ret;
-}
+//vector <string> BoxCollider::receive(string action, vector <string> args) {
+//    vector <string> ret;
+//    if (action == "checkcollision") {
+//        ret = this->checkCollision(args);
+//    }
+//    if (action == "setwidth") {
+//        this->setWidth(stof(args[0]));
+//    }
+//    if (action == "setheight") {
+//        this->setWidth(stof(args[0]));
+//    }
+//    if (action == "shiftposition") {
+//        this->setWidth(stof(args[0]), stof(args[1]));
+//    }
+//    return ret;
+//}
 
 vector <string> BoxCollider::checkCollision(vector <string> boxColliders) {
     vector <string> hits;
