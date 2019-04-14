@@ -48,6 +48,20 @@ void ResourceManager::shutDown() {
   }
 }
 
+void ResourceManager::storeGameObject(GameObject *gameObject) {
+  gameObjects.push_back(gameObject);
+}
+
+void ResourceManager::removeGameObject(string name) {
+  for (int i = 0; i < gameObjects.size(); i++) {
+    if (gameObjects[i] != NULL) {
+      if (gameObjects[i]->name() == name) {
+        gameObjects.erase(components.begin() + i);
+      }
+    }
+  }
+}
+
 SDL_Texture *ResourceManager::loadTexture(const std::string &path,
                                           SDL_Renderer *ren) {
   auto storedTexture = textureMap.find(path);
