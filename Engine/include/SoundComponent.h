@@ -14,23 +14,26 @@ class SoundComponent : public Component {
  public:
   // constructor
   SoundComponent();
+
   void update();
   // Loads a sound at the given path to the resource manager
   void loadSound(string path);
   // Queues a sound to the queue only if it has been loaded by this component
   void playSound(string path);
   // Allows the user to set a alias for a loaded sound path
-  void setSoundAlias(string msg, string existingPath);
+  void setSoundAlias(string alias, string existingPath);
+  // send to container
+  void send(string action, vector<string> args);
   // Receive messages from the component container
-  vector<string> receive(string action, vector<string> args);
+  void receive(string action, vector<string> args);
   // Returns an array of all loaded sounds paths
-  string[] getLoadedPaths();
+  vector<string> getLoadedPaths();
   // Returns an array of all sound aliases
-  string[] getSoundAliases();
+  vector<string> getSoundAliases();
 
  private:
-  unordered_map<string, string> soundAliases;
-  unordered_map<string, Mix_Music*> loadedSounds;
+  std::unordered_map<string, string> soundAliases;
+  std::unordered_map<string, Mix_Music*> loadedSounds;
   queue<Mix_Music*> soundQueue;
 };
 

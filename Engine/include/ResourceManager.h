@@ -34,7 +34,7 @@ class ResourceManager {
   // Store gameObject pointers for global reference
   void storeGameObject(GameObject *gameObject);
   // Remove gameObject from global reference
-  void removeGameObject(string name);
+  void removeGameObject(std::string name);
   //! Loads texture from map and saves to map if loaded for the first time
   SDL_Texture *loadTexture(const std::string &path, SDL_Renderer *ren);
   //! Loads font from map and saves to map if loaded for the first time
@@ -59,7 +59,7 @@ class ResourceManager {
   ResourceManager();                         // Private Singleton
   ResourceManager(ResourceManager const &);  // Avoid copy constructor
   void operator=(ResourceManager const &);   // Don't allow assignment.
-  vector<GameObject *> gameObjects;
+  std::vector<GameObject *> gameObjects;
   std::unordered_map<std::string, SDL_Texture *> textureMap;
   std::unordered_map<std::string, TTF_Font *> fontMap;
   std::unordered_map<std::string, std::tuple<SDL_Texture *, int, int>> textMap;

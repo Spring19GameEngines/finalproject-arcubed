@@ -3,41 +3,30 @@
 
 #include <iostream>
 #include <vector>
-#include "ComponentContainer.h"
-#include "GameObject.h"
-using namespace std;
-
+class ComponentContainer;
+class GameObject;
 class Component {
  public:
   // constructor
-  Component(string id) { this.id = id; };
+  Component(std::string id);
 
   //! updates this component
   virtual void update() = 0;
 
   // Sends a message to the parent component container
-  void send(string action, vector<string> args) {
-    if (container != NULL) {
-      container.send(action, args);
-    } else {
-      std::cout << "Failed to send message" << std::endl;
-    }
-  }
+  virtual void send(std::string action, std::vector<std::string> args) = 0;
 
-  vector<string> receive(string action, vector<string> args) = 0;
-  void setContainer(ComponentContainer* container) {
-    this.container = container;
-  }
-  string getID() { return id; }
+  virtual void receive(std::string action, std::vector<std::string> args) = 0;
+  void setContainer(ComponentContainer* container);
+  std::string getID();
 
  protected:
-  ComponentContainer container;
-  string id;
-  GameObject go;
+  ComponentContainer* container;
+  std::string id;
+  GameObject* go;
 
  private:
   // Variables
-
 };
 
 #endif

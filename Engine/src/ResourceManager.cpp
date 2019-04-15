@@ -52,11 +52,11 @@ void ResourceManager::storeGameObject(GameObject *gameObject) {
   gameObjects.push_back(gameObject);
 }
 
-void ResourceManager::removeGameObject(string name) {
+void ResourceManager::removeGameObject(std::string name) {
   for (int i = 0; i < gameObjects.size(); i++) {
     if (gameObjects[i] != NULL) {
-      if (gameObjects[i]->name() == name) {
-        gameObjects.erase(components.begin() + i);
+      if (gameObjects[i]->name == name) {
+        gameObjects.erase(gameObjects.begin() + i);
       }
     }
   }
