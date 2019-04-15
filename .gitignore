@@ -1,3 +1,5 @@
 .idea
 .vscode
-.DS_Store
+Engine/Build/
+Engine/bin/
+Engine/lib/

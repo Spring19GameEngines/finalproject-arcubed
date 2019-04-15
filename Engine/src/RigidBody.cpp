@@ -83,3 +83,33 @@ void RigidBody::send(std::string action, std::vector<std::string> args) {
     std::cout << "Failed to send message" << std::endl;
   }
 }
+
+void RigidBody::setWidth(float w) {
+    this->width = w;
+};
+void RigidBody::setHeight(float h) {
+    this->height = h;
+};
+void RigidBody::setGrav(float g) {
+    this->gravity = g;
+};
+void RigidBody::shiftPosition(float x, float y) {
+    this->x += x;
+    this->y += y;
+};
+void RigidBody::setMass(float mass) {
+    this->mass = mass;
+};
+void RigidBody::setDrag(float drag) {
+    this->drag = drag;
+};
+void RigidBody::setGravity(bool huh) {
+    this->useGravity = huh;
+};
+void RigidBody::setKinematic(bool huh) {
+    this->isKinematic = huh;
+};
+void RigidBody::addForce(float x, float y) {
+    this->velX += x;
+    this->velY += y;
+};
