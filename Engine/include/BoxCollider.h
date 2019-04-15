@@ -33,7 +33,7 @@ private:
 
     //functions
     //! Checks to see if this box collider is currently overlapping with the given list of game objects
-    vector<string> checkCollision(vector<string> boxColliders);
+    vector<string> checkCollision();
     void setWidth(float w);
     void setHeight(float h);
     void shiftPosition(float x, float y);
