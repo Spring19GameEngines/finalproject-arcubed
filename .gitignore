@@ -1,6 +1,3 @@
 .idea
 .vscode
-Engine/Build/
-Engine/bin/
-Engine/lib/
 .DS_Store
