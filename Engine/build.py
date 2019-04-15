@@ -5,7 +5,7 @@ import platform
 COMPILER = "clang++ -std=c++14"   # The compiler we want to use
 # (You may try g++ if you have trouble)
 SOURCE = "./src/*.cpp"    # Where the source code lives
-EXECUTABLE = "platformer"        # Name of the final executable
+EXECUTABLE = "final"        # Name of the final executable
 # ======================= COMMON CONFIGURATION OPTIONS ======================= #
 
 # (2)=================== Platform specific configuration ===================== #
@@ -28,7 +28,7 @@ elif platform.system() == "Windows":
     COMPILER = "g++ -std=c++14"  # Note we use g++ here as it is more likely what you have
     ARGUMENTS = "-D MINGW -std=c++14 -static-libgcc -static-libstdc++"
     INCLUDE_DIR = "-I./include/ -I./../common/thirdparty/old/glm/"
-    EXECUTABLE = "platformer.exe"
+    EXECUTABLE = "final.exe"
     LIBRARIES = "-lmingw32 -lSDL2main -lSDL2 -lSDL2_image -mwindows"
 # (2)=================== Platform specific configuration ===================== #
 

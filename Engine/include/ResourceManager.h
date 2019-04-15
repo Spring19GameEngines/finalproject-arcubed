@@ -39,7 +39,7 @@ class ResourceManager {
   // Store gameObject pointers for global reference
   void storeGameObject(GameObject *gameObject);
 
-  // Remove gameObject from global reference
+  // Remove gameObject 44from global reference
   void removeGameObject(std::string name);
 
   //! Loads texture from map and saves to map if loaded for the first time

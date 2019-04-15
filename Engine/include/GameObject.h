@@ -21,8 +21,6 @@ class GameObject {
   Vector2D pos;
   std::string name;
   float width, height;
-
- protected:
   ComponentContainer* components;
 };
 

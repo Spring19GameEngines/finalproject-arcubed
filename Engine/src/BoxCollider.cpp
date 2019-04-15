@@ -3,7 +3,7 @@
 
 using namespace std;
 
-//vector <string> BoxCollider::receive(string action, vector <string> args) {
+// vector <string> BoxCollider::receive(string action, vector <string> args) {
 //    vector <string> ret;
 //    if (action == "checkcollision") {
 //        ret = this->checkCollision(args);
@@ -20,31 +20,25 @@ using namespace std;
 //    return ret;
 //}
 
-vector <string> BoxCollider::checkCollision() {
-    vector <string> hits;
-    vector<gameObject*> boxColliders = ResourceManager::getInstance()->gameObjects;
-    for (int i = 0; i < boxColliders.size(); i++) {
-        if (
-                x < boxColliders[i]->x + boxColliders[i]->width &&
-                x + width > boxColliders[i]->x &&
-                y < boxColliders[i]->y + boxColliders[i]->height &&
-                y + height > boxColliders[i]->y) {
-            hits.push_back(boxColliders[i]->id);
-        }
+vector<string> BoxCollider::checkCollision() {
+  vector<string> hits;
+  vector<GameObject*> boxColliders = ResourceManager::getInstance().gameObjects;
+  for (int i = 0; i < boxColliders.size(); i++) {
+    if (x < boxColliders[i]->pos.x + boxColliders[i]->width &&
+        x + width > boxColliders[i]->pos.x &&
+        y < boxColliders[i]->pos.y + boxColliders[i]->height &&
+        y + height > boxColliders[i]->pos.y) {
+      hits.push_back(boxColliders[i]->name);
     }
-    return hits;
+  }
+  return hits;
 }
 
+void BoxCollider::setWidth(float w) { this->width = w; }
 
-void BoxCollider::setWidth(float w) {
-    this->width = w;
-}
-
-void BoxCollider::setHeight(float h) {
-    this->height = h;
-}
+void BoxCollider::setHeight(float h) { this->height = h; }
 
 void BoxCollider::shiftPosition(float x, float y) {
-    this->x += x;
-    this->y += y;
+  this->x += x;
+  this->y += y;
 };
