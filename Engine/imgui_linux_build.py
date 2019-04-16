@@ -1,29 +1,30 @@
 import os
 
-COMPILER = "clang++"
+COMPILER = "g++"
 
-EXEC_NAME = "linux_gui"
-ARGUMENTS = "-D LINUX -std=c++14 -o " + EXEC_NAME
+EXEC_NAME = "engine.so"
+ARGUMENTS = "-D LINUX -std=c++14 -fPIC -o " + EXEC_NAME
 
 SOURCE = [
     "./src/*.cpp",
-    "./library/imgui/imgui*.cpp",
-    "./library/imgui/examples/imgui_impl_sdl.cpp",
-    "./library/imgui/examples/imgui_impl_opengl3.cpp",
-    "./library/imgui/examples/libs/gl3w/GL/gl3w.c"
+    "./lib/imgui/imgui*.cpp",
+    "./lib/imgui/examples/imgui_impl_sdl.cpp",
+    "./lib/imgui/examples/imgui_impl_opengl3.cpp",
+    "./lib/imgui/examples/libs/gl3w/GL/gl3w.c"
 ]
 SOURCE = " ".join(SOURCE)
 
 # Which directories do we want to include.
 INCLUDES = [
     "./include/",
+    "./lib/pybind11/include/",
     "/usr/include/SDL2",
-    "./library/imgui",
-    "./library/imgui/examples",
-    "./library/imgui/examples/libs/gl3w"
+    "./lib/imgui",
+    "./lib/imgui/examples",
+    "./lib/imgui/examples/libs/gl3w"
 ]
 INCLUDES = ['-I{0}'.format(inc) for inc in INCLUDES]
-INCLUDES = " ".join(INCLUDES)
+INCLUDES = " ".join(INCLUDES) + " `python3 -m pybind11 --includes`"
 
 # What libraries do we want to include
 LIBRARIES = [
@@ -35,7 +36,7 @@ LIBRARIES = [
     "SDL2_ttf"
 ]
 LIBRARIES = ['-l{0}'.format(lib) for lib in LIBRARIES]
-LIBRARIES = (" ".join(LIBRARIES))
+LIBRARIES = (" ".join(LIBRARIES)) + " " + "`python3-config --ldflags`"
 
 
 # Build a string of our compile commands that we run in the terminal

@@ -1,16 +1,23 @@
 #include "InputHandler.h"
 
 // Maybe this abstracts to something like this
-void InputHandler::setButton(Command* com, Command* point) { point = com; }
+void InputHandler::setButton(Command com, Command* point) { point = &com; }
 
-void InputHandler::handleInput() {
-  // if (isPressed(BUTTON_W)) {
-  //   buttonW_->execute();
-  // } else if (isPressed(BUTTON_A)) {
-  //   buttonA_->execute();
-  // } else if (isPressed(BUTTON_S)) {
-  //   buttonS_->execute();
-  // } else if (isPressed(BUTTON_D)) {
-  //   buttonD_->execute();
-  // }
+void InputHandler::handleInput()
+{
+  const Uint8 *keystates = SDL_GetKeyboardState(NULL);
+
+  if (keystates[SDLK_w])
+  {
+    buttonW_->execute();
+  } else if (keystates[SDLK_a])
+  {
+    buttonA_->execute();
+  } else if (keystates[SDLK_s])
+  {
+    buttonS_->execute();
+  } else if (keystates[SDLK_d])
+  {
+    buttonD_->execute();
+  }
 }
