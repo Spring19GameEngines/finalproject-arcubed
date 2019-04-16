@@ -5,8 +5,9 @@
 #include <vector>
 #include "Component.h"
 
-class ComponentContainer {
- public:
+class ComponentContainer
+{
+public:
   // constructor - Uses Default name
   ComponentContainer();
 
@@ -14,22 +15,22 @@ class ComponentContainer {
   void update();
 
   // Adds the given component to this container
-  void addComponent(Component* comp);
+  void addComponent(Component *comp);
 
   // Removes a component with the given ID from this container
-  void removeComponent(std::string id);
+  void removeComponent(std::string name);
 
   // Get a component with the given id
-  Component* getComponent(std::string id);
+  Component *getComponent(std::string name);
 
   // Get a vector of all components
-  std::vector<Component*> getComponents();
+  std::vector<Component *> getComponents();
 
   // Send this message to all components
   void send(std::string action, std::vector<std::string> args);
 
- private:
-  std::vector<Component*> components;
+private:
+  std::vector<Component *> components;
 };
 
 #endif

@@ -4,10 +4,11 @@
 #include <iostream>
 #include <vector>
 class ComponentContainer;
-class Component {
- public:
+class Component
+{
+public:
   // constructor
-  Component(std::string id);
+  Component(std::string name);
 
   //! updates this component
   virtual void update() = 0;
@@ -22,14 +23,14 @@ class Component {
   virtual void send(std::string action, std::vector<std::string> args) = 0;
 
   virtual void receive(std::string action, std::vector<std::string> args) = 0;
-  void setContainer(ComponentContainer* container);
-  std::string getID();
+  void setContainer(ComponentContainer *container);
+  std::string getName();
 
- protected:
-  ComponentContainer* container;
-  std::string id;
+protected:
+  ComponentContainer *container;
+  std::string name;
 
- private:
+private:
   // Variables
 };
 

@@ -10,10 +10,12 @@
 
 using namespace std;
 
-class SoundComponent : public Component {
- public:
+class SoundComponent : public Component
+{
+public:
   // constructor
   SoundComponent();
+  SoundComponent(Component *component);
 
   void update();
   // Loads a sound at the given path to the resource manager
@@ -31,10 +33,10 @@ class SoundComponent : public Component {
   // Returns an array of all sound aliases
   vector<string> getSoundAliases();
 
- private:
+private:
   std::unordered_map<string, string> soundAliases;
-  std::unordered_map<string, Mix_Music*> loadedSounds;
-  queue<Mix_Music*> soundQueue;
+  std::unordered_map<string, Mix_Music *> loadedSounds;
+  queue<Mix_Music *> soundQueue;
 };
 
 #endif
