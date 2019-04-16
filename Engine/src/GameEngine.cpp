@@ -1,18 +1,272 @@
 #include "GameEngine.h"
+#include "SoundComponent.h"
 
 GameEngine::GameEngine() {}
 
-GameEngine &GameEngine::getInstance() {
+GameEngine &GameEngine::getInstance()
+{
   static GameEngine *instance = new GameEngine();
   return *instance;
 }
 
-void GameEngine::startUp() {
-  // init gameobjects
+void GameEngine::createGameObject(std::string name)
+{
+  GameObject *obj = new GameObject(name);
+  gameObjects.push_back(obj);
 }
 
-void GameEngine::update() {
-  for (GameObject *obj : gameObjects) {
-    obj->update();
+void GameEngine::createGameObject(std::string name, float x, float y, float w, float h)
+{
+  GameObject *obj = new GameObject(name, x, y, w, h);
+  // gameObjects.push_back(obj);
+}
+
+void GameEngine::deleteGameObject(std::string name)
+{
+  for (int i = 0; i < gameObjects.size(); i++)
+  {
+    if (gameObjects[i] != NULL)
+    {
+      if (gameObjects[i]->name == name)
+      {
+        gameObjects.erase(gameObjects.begin() + i);
+      }
+    }
   }
+}
+// Get a component with the given id
+GameObject *GameEngine::getGameObject(std::string name)
+{
+  for (int i = 0; i < gameObjects.size(); i++)
+  {
+    if (gameObjects[i] != nullptr)
+    {
+      if (gameObjects[i]->name == name)
+      {
+        return gameObjects[i];
+      }
+    }
+  }
+  // didnt find it
+  return nullptr;
+}
+
+void GameEngine::update()
+{
+  if (gameObjects.size() < 1)
+  {
+    std::cout << "update1" << std::endl;
+    std::string mus_path = "Assets/sound/level1.mp3";
+    createGameObject("Music");
+    std::cout << "update2" << std::endl;
+
+    GameObject *music = getGameObject("Music");
+    SoundComponent *sc = new SoundComponent();
+    sc->loadSound(mus_path);
+    sc->playSound(mus_path);
+    // music->components->addComponent(sc);
+    // SoundComponent *csc = static_cast<SoundComponent *>(music->components->getComponent("SOUNDCOMPONENT"));
+    // csc->playSound(mus_path);
+  }
+
+  for (GameObject *obj : gameObjects)
+  {
+    // obj->update();
+  }
+}
+
+void GameEngine::renderBackground()
+{
+  // Get Texture
+  SDL_Texture *texture = ResourceManager::getInstance().loadTexture(
+      "Assets/art/background.png", gRenderer);
+
+  int background_width = 384;
+  int background_height = 240;
+  int multiplier = 4;
+  SDL_Rect Src = {0, 0, background_width, background_height};
+  SDL_Rect Dest = {0, 0, background_width * multiplier,
+                   background_height * multiplier};
+  SDL_RenderCopy(gRenderer, texture, &Src, &Dest);
+}
+
+void GameEngine::render()
+{
+  // std::cout << "rendering" << std::endl;
+  // Clear screen
+  SDL_SetRenderDrawColor(gRenderer, 0x55, 0x55, 0x55, 0xFF); // Gray
+  SDL_RenderClear(gRenderer);
+
+  renderBackground();
+
+  // Update screen
+  SDL_RenderPresent(gRenderer);
+}
+
+/* INITIALIZE GAME */
+bool GameEngine::initSDL()
+{
+  if (SDL_Init(SDL_INIT_VIDEO) < 0)
+  {
+    printf("SDL could not initialize! SDL Error: %s\n", SDL_GetError());
+    return false;
+  }
+  return true;
+}
+
+bool GameEngine::createWindow(int w, int h)
+{
+  // Set texture filtering to linear
+  if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
+  {
+    printf("Warning: Linear texture filtering not enabled!");
+  }
+  // Create Window
+  gWindow =
+      SDL_CreateWindow("ARCubed Platformer", SDL_WINDOWPOS_CENTERED,
+                       SDL_WINDOWPOS_CENTERED, w, h, SDL_WINDOW_SHOWN);
+  if (gWindow == NULL)
+  {
+    printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
+    return false;
+  }
+  return true;
+}
+
+bool GameEngine::createRenderer()
+{
+  // Create vsynced renderer for window
+  gRenderer = SDL_CreateRenderer(
+      gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+  if (gRenderer == NULL)
+  {
+    printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
+    return false;
+  }
+  return true;
+}
+
+bool GameEngine::initSDLImage()
+{
+  int imgFlags = IMG_INIT_PNG;
+  if (!(IMG_Init(imgFlags) & imgFlags))
+  {
+    printf("SDL_image could not initialize! SDL_image Error: %s\n",
+           IMG_GetError());
+    return false;
+  }
+  return true;
+}
+
+bool GameEngine::initSDL_TTF()
+{
+  if (TTF_Init() == -1)
+  {
+    printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
+    return false;
+  }
+  return true;
+}
+
+bool GameEngine::initSDLMixer()
+{
+  if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+  {
+    printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n",
+           Mix_GetError());
+    return false;
+  }
+  return true;
+}
+void GameEngine::run()
+{
+  // Main loop flag
+  bool quit = false;
+
+  // Event handler
+  SDL_Event e;
+  render();
+
+  // While application is running
+  while (!quit)
+  {
+    unsigned int currentTime = SDL_GetTicks(); // Get frame start time
+    int elapsedTime = currentTime - lastTime;  // Time since last counted second
+
+    // Handle events on queue
+    while (SDL_PollEvent(&e) != 0)
+    {
+      // User requests quit
+      if (e.type == SDL_QUIT)
+      {
+        quit = true;
+      }
+      // User requests quit with "q" key
+      if (e.type == SDL_KEYDOWN)
+      {
+        switch (e.key.keysym.sym)
+        {
+        case SDLK_q:
+          quit = true;
+          break;
+        }
+      }
+    }
+
+    update();
+    render();
+
+    // FPS Counter
+    fpsRendered++; // Count frame
+    // If one second has past, print the FPS and reset
+    if (elapsedTime >= 1000)
+    {
+      lastTime = currentTime;
+      fpsRendered = 0;
+    }
+    // If frame finished early delay
+    if (SDL_GetTicks() - currentTime < SCREEN_TICKS_PER_FRAME)
+    {
+      int t = SCREEN_TICKS_PER_FRAME - (SDL_GetTicks() - currentTime);
+      SDL_Delay(t);
+    }
+  }
+}
+
+// Frees media and shuts down SDL
+void GameEngine::close()
+{
+  // Destroy window
+  SDL_DestroyRenderer(gRenderer);
+  SDL_DestroyWindow(gWindow);
+  gWindow = NULL;
+  gRenderer = NULL;
+
+  // Quit SDL subsystems
+  IMG_Quit();
+  SDL_Quit();
+}
+
+int GameEngine::init(int w, int h)
+{
+  // Start up SDL and create window
+  if (initSDL()             // Initialize SDL
+      && createWindow(w, h) // Setup window with game constants
+      && createRenderer()   // Setup renderer with window
+      && initSDLImage()     // Initialize PNG loading
+      && initSDL_TTF()      // Initialize SDL_ttf
+      && initSDLMixer())    // Initialize SDL_mixer
+
+  {
+    // EVERYTHING SUCCEEDED, LETS MAKE THOSE GAME OBJECTS NOW!
+    run();
+  }
+  else
+  {
+    printf("Failed to initialize!\n");
+  }
+  // Free resources and close SDL
+  close();
+
+  return 0;
 }
