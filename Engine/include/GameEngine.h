@@ -28,8 +28,8 @@ class GameEngine {
   //! Get the state of the game
   static GameEngine &getInstance();
 
-  void createGameObject(std::string name);
-  void createGameObject(std::string name, float x, float y, float w, float h);
+  GameObject *createGameObject(std::string name);
+  GameObject *createGameObject(std::string name, float x, float y, float w, float h);
   void deleteGameObject(std::string name);
   GameObject *getGameObject(std::string name);
   //! updates the game state

@@ -1,9 +1,10 @@
 
 #include "Component.h"
 // constructor
-Component::Component(std::string id) { this->id = id; };
+Component::Component(std::string name) { this->name = name; };
 
-void Component::setContainer(ComponentContainer* container) {
+void Component::setContainer(ComponentContainer *container)
+{
   this->container = container;
 }
-std::string Component::getID() { return id; }
+std::string Component::getName() { return name; }
