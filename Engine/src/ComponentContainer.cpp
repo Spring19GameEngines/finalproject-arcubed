@@ -7,7 +7,6 @@ void ComponentContainer::update()
 {
   for (Component *c : components)
   {
-    std::cout << "container loop" << std::endl;
     c->update();
   }
 };

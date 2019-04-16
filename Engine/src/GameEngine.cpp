@@ -9,16 +9,18 @@ GameEngine &GameEngine::getInstance()
   return *instance;
 }
 
-void GameEngine::createGameObject(std::string name)
+GameObject *GameEngine::createGameObject(std::string name)
 {
   GameObject *obj = new GameObject(name);
   gameObjects.push_back(obj);
+  return obj;
 }
 
-void GameEngine::createGameObject(std::string name, float x, float y, float w, float h)
+GameObject *GameEngine::createGameObject(std::string name, float x, float y, float w, float h)
 {
   GameObject *obj = new GameObject(name, x, y, w, h);
-  // gameObjects.push_back(obj);
+  gameObjects.push_back(obj);
+  return obj;
 }
 
 void GameEngine::deleteGameObject(std::string name)
@@ -55,23 +57,22 @@ void GameEngine::update()
 {
   if (gameObjects.size() < 1)
   {
-    std::cout << "update1" << std::endl;
-    std::string mus_path = "Assets/sound/level1.mp3";
-    createGameObject("Music");
-    std::cout << "update2" << std::endl;
+    std::string mus_path = "Assets/sound/music/level1.mp3";
+    std::string sfx_path = "Assets/sound/effects/spin_dash.wav";
 
-    GameObject *music = getGameObject("Music");
+    GameObject *music = createGameObject("Music");
     SoundComponent *sc = new SoundComponent();
-    sc->loadSound(mus_path);
-    sc->playSound(mus_path);
-    // music->components->addComponent(sc);
-    // SoundComponent *csc = static_cast<SoundComponent *>(music->components->getComponent("SOUNDCOMPONENT"));
-    // csc->playSound(mus_path);
+    sc->loadMusic(mus_path);
+    sc->loadEffect(sfx_path);
+    music->components->addComponent(sc);
+    SoundComponent *csc = static_cast<SoundComponent *>(music->components->getComponent("SOUNDCOMPONENT"));
+    csc->playMusic(mus_path);
+    csc->playEffect(sfx_path);
   }
 
   for (GameObject *obj : gameObjects)
   {
-    // obj->update();
+    obj->update();
   }
 }
 
