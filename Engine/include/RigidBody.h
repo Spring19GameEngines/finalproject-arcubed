@@ -24,7 +24,7 @@ class RigidBody : public Component {
   void send(std::string action, std::vector<std::string> args);
   void receive(std::string action, std::vector<std::string> args);
 
- private:
+ protected:
   // variables
   float x, y, width, height, mass, drag, velX, velY, maxVelX, maxVelY, gravity;
   bool useGravity, isKinematic;
