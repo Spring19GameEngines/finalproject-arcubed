@@ -25,8 +25,9 @@
  * Provides support for loading textures, fonts, text, background music, and
  * sound effects
  */
-class ResourceManager {
- public:
+class ResourceManager
+{
+public:
   //! Gets singleton instance
   static ResourceManager &getInstance();
 
@@ -36,6 +37,7 @@ class ResourceManager {
   //! Frees any resources acquired using manager
   void shutDown();
 
+  void storeSDLRenderer(SDL_Renderer *gRenderer);
   // Store gameObject pointers for global reference
   void storeGameObject(GameObject *gameObject);
 
@@ -67,11 +69,12 @@ class ResourceManager {
   Mix_Music *loadMusic(const std::string &path);
 
   std::vector<GameObject *> gameObjects;
+  SDL_Renderer *gRenderer;
 
- private:
-  ResourceManager();                         // Private Singleton
-  ResourceManager(ResourceManager const &);  // Avoid copy constructor
-  void operator=(ResourceManager const &);   // Don't allow assignment.
+private:
+  ResourceManager();                        // Private Singleton
+  ResourceManager(ResourceManager const &); // Avoid copy constructor
+  void operator=(ResourceManager const &);  // Don't allow assignment.
 
   std::unordered_map<std::string, SDL_Texture *> textureMap;
   std::unordered_map<std::string, TTF_Font *> fontMap;

@@ -35,6 +35,8 @@ public:
   GameObject *createGameObject(std::string name, float x, float y, float w, float h);
   void deleteGameObject(std::string name);
   GameObject *getGameObject(std::string name);
+  void run();
+
   //! updates the game state
   void update();
   //! Set up the state of the game
@@ -65,7 +67,6 @@ private:
   bool initSDL_TTF();
   bool initSDLMixer();
   bool initGameEngine();
-  void run();
   void close();
   // variables
   std::vector<GameObject *> gameObjects;
