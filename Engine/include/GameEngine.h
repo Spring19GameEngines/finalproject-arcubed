@@ -14,20 +14,17 @@
 #include "SDL_ttf.h"
 #endif
 
+#include <stdio.h>
 #include <iostream>
 #include <iterator>
 #include <map>
-#include <vector>
-#include <stdio.h>
-#include <iostream>
 #include <string>
+#include <vector>
 #include "GameObject.h"
-#include "GameEngine.h"
 #include "ResourceManager.h"
 
-class GameEngine
-{
-public:
+class GameEngine {
+ public:
   //! Get the state of the game
   static GameEngine &getInstance();
 
@@ -52,10 +49,10 @@ public:
   const int DESIRED_FRAME_RATE = 60;
   const int SCREEN_TICKS_PER_FRAME = 1000 / DESIRED_FRAME_RATE;
 
-private:
-  GameEngine();                       // Private Singleton
-  GameEngine(GameEngine const &);     // Avoid copy constructor
-  void operator=(GameEngine const &); // Don't allow assignment.
+ private:
+  GameEngine();                        // Private Singleton
+  GameEngine(GameEngine const &);      // Avoid copy constructor
+  void operator=(GameEngine const &);  // Don't allow assignment.
   void renderBackground();
   void render();
   bool initSDL();
@@ -71,5 +68,23 @@ private:
   std::vector<GameObject *> gameObjects;
   int w, h;
 };
+
+/* PYBIND */
+
+#include <pybind11/pybind11.h>
+namespace py = pybind11;
+
+PYBIND11_MODULE(mygameengine, m) {
+  m.doc() = "A game object";  // Optional docstring
+
+  py::class_<GameObject>(m, "GameObject")
+      .def("clear", &GameObject::clear)  // Expose member methods
+      .def("delay", &GameObject::delay)
+      .def("flip", &GameObject::flip)
+      .def("update", &GameObject::update)
+      .def("DrawRectangle", &GameObject::DrawRectangle)
+      .def("getSDLWindow", &GameObject::getInstance(),
+           py::return_value_policy::reference);
+}
 
 #endif
