@@ -26,7 +26,7 @@ class BoxCollider : public Component {
   void send(string action, vector<string> args);
   void receive(string action, vector<string> args);
 
- private:
+ protected:
   // variables
   float x, y, width, height;
   GameObject* go;
