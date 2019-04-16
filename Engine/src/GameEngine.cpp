@@ -58,7 +58,7 @@ void GameEngine::update()
   if (gameObjects.size() < 1)
   {
     std::string mus_path = "Assets/sound/music/level1.mp3";
-    std::string sfx_path = "Assets/sound/effects/spin_dash.wav";
+    std::string sfx_path = "Assets/sound/effects/spin_jump.wav";
 
     GameObject *music = createGameObject("Music");
     SoundComponent *sc = new SoundComponent();
