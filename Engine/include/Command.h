@@ -18,6 +18,7 @@ class Command {
   virtual void setGameObject(GameObject *go) { this->go = go; }
 
  protected:
+  //! The gameobject this belongs to
   GameObject *go;
 };
 

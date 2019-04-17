@@ -1,0 +1,13 @@
+digraph "Command"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="Command",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Allows for generic commands to be passed to components/objects when certain conditions are met...."];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" go" ,fontname="Helvetica"];
+  Node2 [label="GameObject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_game_object.html",tooltip="a representation of a game object"];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" pos" ,fontname="Helvetica"];
+  Node3 [label="Vector2D",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_vector2_d.html",tooltip="Represents vectors within the engine."];
+  Node4 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" components" ,fontname="Helvetica"];
+  Node4 [label="ComponentContainer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_component_container.html",tooltip="Holds all the components that are contained by a game object. Allows for messages to be sent to all c..."];
+}

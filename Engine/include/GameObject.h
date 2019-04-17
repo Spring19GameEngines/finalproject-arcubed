@@ -34,15 +34,18 @@ class GameObject {
   //! Get a vector of all components
   std::vector<Component *> getComponents();
 
-  //! Variables
+  //! The position of this game object
   Vector2D pos;
-  //! Variables
+  //! Name of this game object
   std::string name;
-  //! Variables
-  float width, height;
-  //! Variables
+  //! The width of this game object
+  float width;
+  //! The height of this game object
+  float height;
+  //! The scale of this game object
   int scale = 1;
-  //! Variables
+  //! A component container containing all of the components this gameobject
+  //! owns
   ComponentContainer *components;
 };
 

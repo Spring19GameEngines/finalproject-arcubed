@@ -35,6 +35,7 @@ class ComponentContainer {
   void send(std::string action, std::vector<std::string> args);
 
  private:
+  //! A list of all of the components in this container
   std::vector<Component *> components;
 };
 

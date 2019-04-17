@@ -34,7 +34,9 @@ class Component {
   virtual std::string getName();
 
  protected:
+  //! The component container this belongs to
   ComponentContainer *container;
+  //! The name of this component
   std::string name;
 
  private:

@@ -29,8 +29,11 @@ class BoxCollider : public Component {
   vector<string> checkCollision();
 
  protected:
-  // variables
-  float width, height;
+  //! Width of the box collider
+  float width;
+  //! Height of the box collider
+  float height;
+  //! The gameobject this belongs to
   GameObject* go;
 };
 
