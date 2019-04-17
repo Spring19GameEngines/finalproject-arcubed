@@ -1,8 +1,15 @@
 from mygameengine import *
 import random
+import time
 
 engine = GameEngine.getInstance()
 engine.init(504, 756)
+
+lost = False
+
+point_sound = "Assets/sound/effects/sfx_point.wav"
+flap_sound = "Assets/sound/effects/sfx_wing.wav"
+hit_sound = "Assets/sound/effects/sfx_hit.wav"
 
 # SCRIPTS
 
@@ -10,13 +17,47 @@ engine.init(504, 756)
 class Jump(Command):
     def __init__(self):
         Command.__init__(self)
+        self.prev_flap = time.time()
 
     def setGameObject(self, gameobject):
         self.go = gameobject
 
     def execute(self):
-        rigidbody = self.go.getComponent("RIGIDBODYCOMPONENT")
-        rigidbody.setForceY(-20)
+        global lost
+        if lost:
+            return
+
+        if (self.prev_flap - time.time() < -0.15):
+            rigidbody = self.go.getComponent("RIGIDBODYCOMPONENT")
+            rigidbody.setForceY(-30)
+
+            sc = self.go.getComponent("SOUNDCOMPONENT")
+            sc.playEffect(flap_sound)
+            self.prev_flap = time.time()
+
+
+class CheckLoss(Component):
+
+    def __init__(self, gameobject):
+        Component.__init__(self, "CHECKLOSS")
+        self.go = gameobject
+
+    def update(self):
+        global lost
+
+        if not lost:
+            hitbox = self.go.getComponent("BOXCOLLIDERCOMPONENT")
+            if hitbox.anyCollision():
+                sc = self.go.getComponent("SOUNDCOMPONENT")
+                sc.playEffect(hit_sound)
+                lost = True
+                displayLoss()
+
+    def send(self, action, args):
+        return
+
+    def receive(self, action, args):
+        return
 
 
 class DriftLeft(Component):
@@ -25,12 +66,17 @@ class DriftLeft(Component):
         self.go = gameobject
 
     def update(self):
+        global lost
+        if lost:
+            return
+
         rb = self.go.getComponent("RIGIDBODYCOMPONENT")
         rb.setForceX(-4)
 
         if 98 < self.go.pos.x < 102:
             if self.go.name == "BotPipe1":
                 sc = self.go.getComponent("SOUNDCOMPONENT")
+                sc.playEffect(point_sound)
 
         if self.go.pos.x <= -118:
             self.go.pos.x = 500
@@ -66,6 +112,11 @@ class AngleComponent(Component):
         return
 
 
+def displayLoss():
+    gameover.loadAnimation("Assets/art/you_lose.png", 0, 1, 1)
+    gameover.setScale(2)
+
+
 # Music
 bgm = "Assets/sound/music/level1.mp3"
 music_component = SoundComponent()
@@ -99,6 +150,17 @@ jump = Jump()
 controller = InputComponent(flappy)
 controller.setButton(44, jump)  # 44 is SPACEBAR
 flappy.addComponent(controller)
+# Sound
+flappy_sound = SoundComponent()
+flappy_sound.loadEffect(flap_sound)
+flappy_sound.loadEffect(hit_sound)
+flappy.addComponent(flappy_sound)
+# Hitbox
+flappy_hitbox = BoxCollider(flappy)
+flappy.addComponent(flappy_hitbox)
+check_loss = CheckLoss(flappy)
+flappy.addComponent(check_loss)
+
 
 # Pipe
 pipe1 = engine.createGameObject("BotPipe1", 450, 500, 108, 447)
@@ -114,6 +176,13 @@ pipe1.addComponent(pipe_body1)
 # Script
 drift_script1 = DriftLeft(pipe1)
 pipe1.addComponent(drift_script1)
+# Sound
+pipe_sound_component = SoundComponent()
+pipe_sound_component.loadEffect(point_sound)
+pipe1.addComponent(pipe_sound_component)
+# Hitbox
+pipe_hitbox = BoxCollider(pipe1)
+pipe1.addComponent(pipe_hitbox)
 
 # Pipe
 pipe2 = engine.createGameObject("TopPipe1", 450, 500, 108, 447)
@@ -132,5 +201,12 @@ pipe2.addComponent(pipe_body2)
 # Script
 drift_script2 = DriftLeft(pipe2)
 pipe2.addComponent(drift_script2)
+# Hitbox
+pipe_hitbox2 = BoxCollider(pipe2)
+pipe2.addComponent(pipe_hitbox2)
+
+loss = engine.createGameObject("GameOver", 75, 100, 0, 0)
+gameover = RendererComponent(loss)
+loss.addComponent(gameover)
 
 engine.run()

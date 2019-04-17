@@ -27,17 +27,19 @@ bool BoxCollider::anyCollision() {
   vector<GameObject*> boxColliders = ResourceManager::getInstance().gameObjects;
   for (int i = 0; i < boxColliders.size(); i++) {
     if (boxColliders[i]->name != this->go->name) {
-      if (this->go->pos.x <
-              boxColliders[i]->pos.x +
-                  boxColliders[i]->width * boxColliders[i]->scale &&
-          this->go->pos.x + this->width * this->go->scale >
-              boxColliders[i]->pos.x &&
-          this->go->pos.y <
-              boxColliders[i]->pos.y +
-                  boxColliders[i]->height * boxColliders[i]->scale &&
-          this->go->pos.y + this->height * this->go->scale >
-              boxColliders[i]->pos.y) {
-        return true;
+      if (boxColliders[i]->getComponent("BOXCOLLIDERCOMPONENT") != nullptr) {
+        if (this->go->pos.x <
+                boxColliders[i]->pos.x +
+                    boxColliders[i]->width * boxColliders[i]->scale &&
+            this->go->pos.x + this->width * this->go->scale >
+                boxColliders[i]->pos.x &&
+            this->go->pos.y <
+                boxColliders[i]->pos.y +
+                    boxColliders[i]->height * boxColliders[i]->scale &&
+            this->go->pos.y + this->height * this->go->scale >
+                boxColliders[i]->pos.y) {
+          return true;
+        }
       }
     }
   }
