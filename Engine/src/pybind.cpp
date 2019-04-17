@@ -1,12 +1,28 @@
 #include <pybind11/pybind11.h>
+#include "Command.h"
 #include "Component.h"
 #include "ComponentContainer.h"
 #include "GameEngine.h"
 #include "GameObject.h"
+#include "InputComponent.h"
 #include "RendererComponent.h"
 #include "SoundComponent.h"
 
 namespace py = pybind11;
+
+class PyCommand : public Command {
+ public:
+  using Command::Command;
+
+  /* Trampoline (need one for each virtual function) */
+  void execute() override {
+    PYBIND11_OVERLOAD_PURE(
+        void,    /* Return type */
+        Command, /* Parent class */
+        execute  /* Name of function in C++ (must match Python name) */
+    );
+  }
+};
 
 class PyComponent : public Component {
  public:
@@ -62,6 +78,14 @@ class PyComponent : public Component {
 /* MODULE */
 
 PYBIND11_MODULE(mygameengine, m) {
+  /* COMMAND */
+  py::class_<Command, PyCommand> command(m, "Command");
+  command.def(py::init())
+      .def("execute", &Command::execute,
+           py::return_value_policy::automatic_reference)
+      .def("setGameObject", &Command::setGameObject,
+           py::return_value_policy::automatic_reference);
+
   /* COMPONENT (ABSTRACT) */
   py::class_<Component, PyComponent> component(m, "Component");
   component.def(py::init<std::string>(), py::arg("name"))
@@ -130,6 +154,19 @@ PYBIND11_MODULE(mygameengine, m) {
                      py::return_value_policy::automatic_reference)
       .def_readwrite("components", &GameObject::components,
                      py::return_value_policy::automatic_reference);
+
+  /* RENDERER COMPONENT */
+  py::class_<InputComponent>(m, "InputComponent", component)
+      .def(py::init<GameObject *>(), py::arg("gameobject"))
+      .def(py::init<Component *>(), py::arg("component"))
+      .def("update", &InputComponent::update,
+           py::return_value_policy::automatic_reference)
+      .def("send", &InputComponent::send,
+           py::return_value_policy::automatic_reference)
+      .def("receive", &InputComponent::receive,
+           py::return_value_policy::automatic_reference)
+      .def("setButton", &InputComponent::setButton,
+           py::return_value_policy::automatic_reference);
 
   /* RENDERER COMPONENT */
   py::class_<RendererComponent>(m, "RendererComponent", component)
