@@ -19,6 +19,11 @@ GameObject::GameObject(std::string name, float x, float y, float w, float h)
   this->components = new ComponentContainer();
 };
 
+GameObject::~GameObject()
+{
+  delete this->components;
+}
+
 // updates the object and it's components
 void GameObject::update() { components->update(); };
 

@@ -8,6 +8,16 @@
 
 GameEngine::GameEngine() {}
 
+GameEngine::~GameEngine()
+{
+  for (int i = 0; i < gameObjects.size(); i++)
+  {
+    if (gameObjects[i] != nullptr)
+    {
+      delete gameObjects[i];
+    }
+  }
+}
 GameEngine &GameEngine::getInstance()
 {
   static GameEngine *instance = new GameEngine();
@@ -35,7 +45,7 @@ void GameEngine::deleteGameObject(std::string name)
 {
   for (int i = 0; i < gameObjects.size(); i++)
   {
-    if (gameObjects[i] != NULL)
+    if (gameObjects[i] != nullptr)
     {
       if (gameObjects[i]->name == name)
       {
@@ -209,8 +219,8 @@ void GameEngine::close()
   // Destroy window
   SDL_DestroyRenderer(gRenderer);
   SDL_DestroyWindow(gWindow);
-  gWindow = NULL;
-  gRenderer = NULL;
+  gWindow = nullptr;
+  gRenderer = nullptr;
 
   // Quit SDL subsystems
   IMG_Quit();
