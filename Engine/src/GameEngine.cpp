@@ -64,24 +64,13 @@ void GameEngine::update() {
 
 //    Renderer
         RendererComponent *rc = new RendererComponent(music);
-        rc->loadAnimation("Assets/art/character.png", 12);
+        rc->loadAnimation("Assets/art/character.png", 6, 6, 12);
         rc->setScale(3);
         rc->setFrameDelay(4);
         rc->setCamCentered(false);
         music->components->addComponent(rc);
-
-
-        GameObject *music = createGameObject("Music", 400, 400, 0, 0);
-        SoundComponent *sc = new SoundComponent();
-        sc->loadMusic(mus_path);
-        sc->loadEffect(sfx_path);
-        music->components->addComponent(sc);
-        RendererComponent *rc = new RendererComponent(music);
-        rc->loadAnimation("Assets/art/character.png", 6, 6, 12);
-        rc->setScale(3);
-        rc->setFrameDelay(4);
         // rc->setCamCentered(true);
-        music->components->addComponent(rc);
+        
         // input
         InputComponent *ic = new InputComponent(music);
         CMDGoLeft *goLeft = new CMDGoLeft();
@@ -92,17 +81,17 @@ void GameEngine::update() {
         SoundComponent *csc = static_cast<SoundComponent *>(music->components->getComponent("SOUNDCOMPONENT"));
         csc->playMusic(mus_path);
         csc->playEffect(sfx_path);
+
 //    RIGID BOY
         RigidBody *rb1 = new RigidBody(music);
         rb1->setUseGravity(false);
         rb1->setIsKinematic(false);
         music->components->addComponent(rb1);
-
 //    OTHER
         GameObject *asdf = createGameObject("asdf", 400, 100, 0, 0);
 //    Renderer
         RendererComponent *rc2 = new RendererComponent(asdf);
-        rc2->loadAnimation("Assets/art/character.png", 12);
+        rc2->loadAnimation("Assets/art/character.png", 6, 6, 12);
         rc2->setScale(3);
         rc2->setFrameDelay(3);
         rc2->setCamCentered(false);
@@ -115,10 +104,15 @@ void GameEngine::update() {
         asdf->components->addComponent(rb2);
     }
 
-    for (GameObject *obj : gameObjects) {
-        obj->update();
+    for (
+        GameObject *obj
+            : gameObjects) {
+        obj->
+
+                update();
     }
 }
+
 
 void GameEngine::renderBackground() {
     // std::cout << "rendering" << std::endl;
