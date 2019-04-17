@@ -70,7 +70,7 @@ void GameEngine::update()
     std::string mus_path = "Assets/sound/music/level1.mp3";
     std::string sfx_path = "Assets/sound/effects/spin_jump.wav";
 
-    GameObject *music = createGameObject("Music", 400, 400, 0, 0);
+    GameObject *music = createGameObject("Music", 400, 100, 0, 0);
     SoundComponent *sc = new SoundComponent();
     sc->loadMusic(mus_path);
     sc->loadEffect(sfx_path);
@@ -86,7 +86,7 @@ void GameEngine::update()
     // rc->setCamCentered(true);
     //    RIGID BOY
     RigidBody *rb1 = new RigidBody(music);
-    rb1->setUseGravity(false);
+    rb1->setUseGravity(true);
     rb1->setIsKinematic(false);
     music->components->addComponent(rb1);
 
@@ -103,7 +103,7 @@ void GameEngine::update()
     csc->playEffect(sfx_path);
 
     //    OTHER
-    GameObject *asdf = createGameObject("asdf", 400, 100, 0, 0);
+    GameObject *asdf = createGameObject("asdf", 400, 400, 0, 0);
     //    Renderer
     RendererComponent *rc2 = new RendererComponent(asdf);
     rc2->loadAnimation("Assets/art/character.png", 6, 6, 12);
@@ -114,16 +114,14 @@ void GameEngine::update()
 
     //    RIGID BOY
     RigidBody *rb2 = new RigidBody(asdf);
-    rb2->setUseGravity(true);
-    rb2->setIsKinematic(false);
+    rb2->setUseGravity(false);
+    rb2->setIsKinematic(true);
     asdf->components->addComponent(rb2);
   }
 
   for (GameObject *obj : gameObjects)
   {
-    obj->
-
-        update();
+    obj->update();
   }
 }
 
