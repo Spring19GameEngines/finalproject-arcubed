@@ -29,7 +29,8 @@ class GameEngine {
   static GameEngine &getInstance();
 
   GameObject *createGameObject(std::string name);
-  GameObject *createGameObject(std::string name, float x, float y, float w, float h);
+  GameObject *createGameObject(std::string name, float x, float y, float w,
+                               float h);
   void deleteGameObject(std::string name);
   GameObject *getGameObject(std::string name);
   void run();
@@ -69,23 +70,5 @@ class GameEngine {
   std::vector<GameObject *> gameObjects;
   int w, h;
 };
-
-/* PYBIND */
-
-#include <pybind11/pybind11.h>
-namespace py = pybind11;
-
-PYBIND11_MODULE(mygameengine, m) {
-  m.doc() = "A game object";  // Optional docstring
-
-  py::class_<GameObject>(m, "GameObject")
-      .def("clear", &GameObject::clear)  // Expose member methods
-      .def("delay", &GameObject::delay)
-      .def("flip", &GameObject::flip)
-      .def("update", &GameObject::update)
-      .def("DrawRectangle", &GameObject::DrawRectangle)
-      .def("getSDLWindow", &GameObject::getInstance(),
-           py::return_value_policy::reference);
-}
 
 #endif

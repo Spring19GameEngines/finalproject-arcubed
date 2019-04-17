@@ -24,7 +24,8 @@ PYBIND11_MODULE(mygameengine, m) {
       .def("update", &GameEngine::update,
            py::return_value_policy::automatic_reference)
       .def("init", &GameEngine::init,
-           py::return_value_policy::automatic_reference);
+           py::return_value_policy::automatic_reference)
+      .def("run", &GameEngine::run);
 
   py::class_<SoundComponent>(m, "SoundComponent")
       .def(py::init())
