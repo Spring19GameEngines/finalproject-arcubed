@@ -12,16 +12,16 @@ SOURCE = [
 SOURCE = " ".join(SOURCE)
 
 # The name of our executable
-EXECUTABLE = "spritetool.so"
+EXECUTABLE = "mygameengine.so"
 
 # You can can add other arguments as you see fit.
 # What does the "-D MAC" command do?
-ARGUMENTS = "-D MAC -std=c++17 -fPIC" + " -o " + EXECUTABLE
+ARGUMENTS = "-D MAC -std=c++14 -fPIC" + " -o " + EXECUTABLE
 
 # Which directories do we want to include.
 INCLUDES = [
     "./include/",
-    "./include/pybind11/include/",
+    "./lib/pybind11/include/",
     "/Library/Frameworks/SDL2.framework/Headers",
     "/Library/Frameworks/SDL2_image.framework/Headers",
     "/Library/Frameworks/SDL2_mixer.framework/Headers",

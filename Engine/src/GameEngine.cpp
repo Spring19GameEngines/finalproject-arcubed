@@ -1,6 +1,6 @@
 #include "GameEngine.h"
 #include "SoundComponent.h"
-
+#include "RendererComponent.h"
 GameEngine::GameEngine() {}
 
 GameEngine &GameEngine::getInstance()
@@ -60,11 +60,16 @@ void GameEngine::update()
     std::string mus_path = "Assets/sound/music/level1.mp3";
     std::string sfx_path = "Assets/sound/effects/spin_jump.wav";
 
-    GameObject *music = createGameObject("Music");
+    GameObject *music = createGameObject("Music", 400, 400, 0, 0);
     SoundComponent *sc = new SoundComponent();
     sc->loadMusic(mus_path);
     sc->loadEffect(sfx_path);
     music->components->addComponent(sc);
+    RendererComponent *rc = new RendererComponent(music);
+    rc->loadAnimation("Assets/art/character.png", 12);
+    rc->setScale(3);
+    rc->setFrameDelay(4);
+    music->components->addComponent(rc);
     SoundComponent *csc = static_cast<SoundComponent *>(music->components->getComponent("SOUNDCOMPONENT"));
     csc->playMusic(mus_path);
     csc->playEffect(sfx_path);
@@ -78,7 +83,8 @@ void GameEngine::update()
 
 void GameEngine::renderBackground()
 {
-  // Get Texture
+  // std::cout << "rendering" << std::endl;
+  // Clear screen
   SDL_Texture *texture = ResourceManager::getInstance().loadTexture(
       "Assets/art/background.png", gRenderer);
 
@@ -89,19 +95,6 @@ void GameEngine::renderBackground()
   SDL_Rect Dest = {0, 0, background_width * multiplier,
                    background_height * multiplier};
   SDL_RenderCopy(gRenderer, texture, &Src, &Dest);
-}
-
-void GameEngine::render()
-{
-  // std::cout << "rendering" << std::endl;
-  // Clear screen
-  SDL_SetRenderDrawColor(gRenderer, 0x55, 0x55, 0x55, 0xFF); // Gray
-  SDL_RenderClear(gRenderer);
-
-  renderBackground();
-
-  // Update screen
-  SDL_RenderPresent(gRenderer);
 }
 
 /* INITIALIZE GAME */
@@ -144,6 +137,7 @@ bool GameEngine::createRenderer()
     printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
     return false;
   }
+  ResourceManager::getInstance().storeSDLRenderer(gRenderer);
   return true;
 }
 
@@ -186,8 +180,6 @@ void GameEngine::run()
 
   // Event handler
   SDL_Event e;
-  render();
-
   // While application is running
   while (!quit)
   {
@@ -213,10 +205,11 @@ void GameEngine::run()
         }
       }
     }
-
+    SDL_RenderClear(gRenderer);
+    renderBackground();
     update();
-    render();
-
+    // SDL_SetRenderDrawColor(gRenderer, 0x55, 0x55, 0x55, 0xFF); // Gray
+    SDL_RenderPresent(gRenderer);
     // FPS Counter
     fpsRendered++; // Count frame
     // If one second has past, print the FPS and reset
@@ -232,6 +225,8 @@ void GameEngine::run()
       SDL_Delay(t);
     }
   }
+
+  close();
 }
 
 // Frees media and shuts down SDL
@@ -260,14 +255,12 @@ int GameEngine::init(int w, int h)
 
   {
     // EVERYTHING SUCCEEDED, LETS MAKE THOSE GAME OBJECTS NOW!
-    run();
+    printf("Initialized!\n");
   }
   else
   {
     printf("Failed to initialize!\n");
   }
-  // Free resources and close SDL
-  close();
 
   return 0;
 }

@@ -14,27 +14,27 @@
 #include "SDL_ttf.h"
 #endif
 
+#include <stdio.h>
 #include <iostream>
 #include <iterator>
 #include <map>
-#include <vector>
-#include <stdio.h>
-#include <iostream>
 #include <string>
+#include <vector>
 #include "GameObject.h"
-#include "GameEngine.h"
 #include "ResourceManager.h"
 
-class GameEngine
-{
-public:
+class GameEngine {
+ public:
   //! Get the state of the game
   static GameEngine &getInstance();
 
   GameObject *createGameObject(std::string name);
-  GameObject *createGameObject(std::string name, float x, float y, float w, float h);
+  GameObject *createGameObject(std::string name, float x, float y, float w,
+                               float h);
   void deleteGameObject(std::string name);
   GameObject *getGameObject(std::string name);
+  void run();
+
   //! updates the game state
   void update();
   //! Set up the state of the game
@@ -52,10 +52,10 @@ public:
   const int DESIRED_FRAME_RATE = 60;
   const int SCREEN_TICKS_PER_FRAME = 1000 / DESIRED_FRAME_RATE;
 
-private:
-  GameEngine();                       // Private Singleton
-  GameEngine(GameEngine const &);     // Avoid copy constructor
-  void operator=(GameEngine const &); // Don't allow assignment.
+ private:
+  GameEngine();                        // Private Singleton
+  GameEngine(GameEngine const &);      // Avoid copy constructor
+  void operator=(GameEngine const &);  // Don't allow assignment.
   void renderBackground();
   void render();
   bool initSDL();
@@ -65,7 +65,6 @@ private:
   bool initSDL_TTF();
   bool initSDLMixer();
   bool initGameEngine();
-  void run();
   void close();
   // variables
   std::vector<GameObject *> gameObjects;
