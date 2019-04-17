@@ -16,9 +16,12 @@ class RigidBody : public Component {
   void setUseGravity(bool huh);
   void setIsKinematic(bool huh);
   void addForce(float x, float y);
+  float getForceX();
+  float getForceY();
   void setForceX(float x);
   void setForceY(float y);
-
+  void setMaxForceX(float f);
+  void setMaxForceY(float f);
 
  protected:
   // variables

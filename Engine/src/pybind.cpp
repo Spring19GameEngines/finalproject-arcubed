@@ -154,6 +154,14 @@ PYBIND11_MODULE(mygameengine, m) {
            py::arg("x"), py::arg("y"), py::arg("width"), py::arg("height"))
       .def("update", &GameObject::update,
            py::return_value_policy::automatic_reference)
+      .def("addComponent", &GameObject::addComponent,
+           py::return_value_policy::automatic_reference)
+      .def("removeComponent", &GameObject::removeComponent,
+           py::return_value_policy::automatic_reference)
+      .def("getComponent", &GameObject::getComponent,
+           py::return_value_policy::automatic_reference)
+      .def("getComponents", &GameObject::getComponents,
+           py::return_value_policy::automatic_reference)
       .def_readwrite("pos", &GameObject::pos,
                      py::return_value_policy::automatic_reference)
       .def_readwrite("name", &GameObject::name,
@@ -199,9 +207,17 @@ PYBIND11_MODULE(mygameengine, m) {
            py::return_value_policy::automatic_reference)
       .def("addForce", &RigidBody::addForce,
            py::return_value_policy::automatic_reference)
+      .def("getForceX", &RigidBody::getForceX,
+           py::return_value_policy::automatic_reference)
+      .def("getForceY", &RigidBody::getForceY,
+           py::return_value_policy::automatic_reference)
       .def("setForceX", &RigidBody::setForceX,
            py::return_value_policy::automatic_reference)
       .def("setForceY", &RigidBody::setForceY,
+           py::return_value_policy::automatic_reference)
+      .def("setMaxForceX", &RigidBody::setMaxForceX,
+           py::return_value_policy::automatic_reference)
+      .def("setMaxForceY", &RigidBody::setMaxForceY,
            py::return_value_policy::automatic_reference);
 
   /* RENDERER COMPONENT */
