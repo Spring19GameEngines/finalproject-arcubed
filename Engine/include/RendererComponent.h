@@ -34,8 +34,6 @@ public:
   void setAnimation(string alias);
 
 private:
-  int x;
-  int y;
   int w;
   int h;
   int scale = 1;
