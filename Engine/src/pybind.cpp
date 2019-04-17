@@ -3,7 +3,9 @@
 #include "ComponentContainer.h"
 #include "GameEngine.h"
 #include "GameObject.h"
+#include "RendererComponent.h"
 #include "SoundComponent.h"
+
 namespace py = pybind11;
 
 class PyComponent : public Component {
@@ -128,6 +130,29 @@ PYBIND11_MODULE(mygameengine, m) {
                      py::return_value_policy::automatic_reference)
       .def_readwrite("components", &GameObject::components,
                      py::return_value_policy::automatic_reference);
+
+  /* RENDERER COMPONENT */
+  py::class_<RendererComponent>(m, "RendererComponent", component)
+      .def(py::init<GameObject *>(), py::arg("gameobject"))
+      .def(py::init<Component *>(), py::arg("component"))
+      .def("update", &RendererComponent::update,
+           py::return_value_policy::automatic_reference)
+      .def("send", &RendererComponent::send,
+           py::return_value_policy::automatic_reference)
+      .def("receive", &RendererComponent::receive,
+           py::return_value_policy::automatic_reference)
+      .def("loadAnimation", &RendererComponent::loadAnimation,
+           py::return_value_policy::automatic_reference)
+      .def("setScale", &RendererComponent::setScale,
+           py::return_value_policy::automatic_reference)
+      .def("setFrameDelay", &RendererComponent::setFrameDelay,
+           py::return_value_policy::automatic_reference)
+      .def("setAnimationAlias", &RendererComponent::setAnimationAlias,
+           py::return_value_policy::automatic_reference)
+      .def("getAnimationAliases", &RendererComponent::getAnimationAliases,
+           py::return_value_policy::automatic_reference)
+      .def("setAnimation", &RendererComponent::setAnimation,
+           py::return_value_policy::automatic_reference);
 
   /* SOUND COMPONENT */
   py::class_<SoundComponent>(m, "SoundComponent", component)
