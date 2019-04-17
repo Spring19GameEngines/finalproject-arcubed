@@ -33,7 +33,7 @@ public:
 
   // binds a reference to a command to the pointer assigned with the desired
   // button
-  void setButton(SDL_Scancode key, Command *cmd);
+  void setButton(int key, Command *cmd);
 
   // HAVE TO COME BACK TO THIS TO FIX
 private:
