@@ -15,6 +15,7 @@
 #endif
 
 // Binding to imgui???
+#include <unordered_map>
 #include "Command.h"
 using namespace std;
 class InputComponent : public Component
@@ -37,32 +38,7 @@ public:
   // HAVE TO COME BACK TO THIS TO FIX
 private:
   GameObject *go;
-  Command *buttonA_;
-  Command *buttonB_;
-  Command *buttonC_;
-  Command *buttonD_;
-  Command *buttonE_;
-  Command *buttonF_;
-  Command *buttonG_;
-  Command *buttonH_;
-  Command *buttonI_;
-  Command *buttonJ_;
-  Command *buttonK_;
-  Command *buttonL_;
-  Command *buttonM_;
-  Command *buttonN_;
-  Command *buttonO_;
-  Command *buttonP_;
-  Command *buttonQ_;
-  Command *buttonR_;
-  Command *buttonS_;
-  Command *buttonT_;
-  Command *buttonU_;
-  Command *buttonV_;
-  Command *buttonW_;
-  Command *buttonX_;
-  Command *buttonY_;
-  Command *buttonZ_;
+  std::unordered_map<SDL_Scancode, Command *> mappedKeys;
 };
 
 #endif // FINALPROJECT_ARCUBED_INPUTCOMPONENT_H
