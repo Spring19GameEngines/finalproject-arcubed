@@ -25,13 +25,14 @@ void InputComponent::receive(string action, vector<string> args)
 }
 
 // // Maybe this abstracts to something like this
-void InputComponent::setButton(SDL_Scancode key, Command *cmd)
+void InputComponent::setButton(int key, Command *cmd)
 {
   // Set command's game object to this game object
   cmd->setGameObject(this->go);
   if (cmd != nullptr)
   {
-    mappedKeys[key] = cmd;
+    auto keycode = static_cast<SDL_Scancode>(key);
+    mappedKeys[keycode] = cmd;
   }
   else
   {

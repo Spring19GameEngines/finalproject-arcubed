@@ -78,8 +78,8 @@ void GameEngine::update()
     InputComponent *ic = new InputComponent(music);
     CMDGoLeft *goLeft = new CMDGoLeft();
     CMDGoRight *goRight = new CMDGoRight();
-    ic->setButton(SDL_SCANCODE_A, goLeft);
-    ic->setButton(SDL_SCANCODE_D, goRight);
+    ic->setButton(4, goLeft);
+    ic->setButton(7, goRight);
     music->components->addComponent(ic);
     SoundComponent *csc = static_cast<SoundComponent *>(music->components->getComponent("SOUNDCOMPONENT"));
     csc->playMusic(mus_path);
