@@ -14,15 +14,11 @@ using namespace std;
 
 class BoxCollider : public Component {
  public:
-  BoxCollider(GameObject* go) : Component("boxcollider") {
-    this->width = go->width;
-    this->height = go->height;
-    this->go = go;
-  }
-
+  BoxCollider(GameObject* go);
   void update();
   void send(string action, vector<string> args);
   void receive(string action, vector<string> args);
+  bool anyCollision();
 
   //! Checks to see if this box collider is currently overlapping with the given
   //! list of game objects
@@ -32,7 +28,6 @@ class BoxCollider : public Component {
   // variables
   float width, height;
   GameObject* go;
-
 };
 
 #endif

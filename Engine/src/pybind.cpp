@@ -1,4 +1,5 @@
 #include <pybind11/pybind11.h>
+#include "BoxCollider.h"
 #include "Command.h"
 #include "Component.h"
 #include "ComponentContainer.h"
@@ -108,6 +109,20 @@ PYBIND11_MODULE(mygameengine, m) {
       .def("setContainer", &Component::setContainer,
            py::return_value_policy::automatic_reference)
       .def("getName", &Component::getName,
+           py::return_value_policy::automatic_reference);
+
+  /* BOX COLLIDER */
+  py::class_<BoxCollider>(m, "BoxCollider", component)
+      .def(py::init<GameObject *>(), py::arg("gameobject"))
+      .def("update", &BoxCollider::update,
+           py::return_value_policy::automatic_reference)
+      .def("send", &BoxCollider::send,
+           py::return_value_policy::automatic_reference)
+      .def("receive", &BoxCollider::receive,
+           py::return_value_policy::automatic_reference)
+      .def("anyCollision", &BoxCollider::anyCollision,
+           py::return_value_policy::automatic_reference)
+      .def("checkCollision", &BoxCollider::checkCollision,
            py::return_value_policy::automatic_reference);
 
   /* COMPONENT CONTAINER */
