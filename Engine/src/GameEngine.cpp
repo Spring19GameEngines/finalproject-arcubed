@@ -68,6 +68,7 @@ void GameEngine::update()
     RendererComponent *rc = new RendererComponent(music);
     rc->loadAnimation("Assets/art/character.png", 12);
     rc->setScale(3);
+    rc->setFrameDelay(4);
     music->components->addComponent(rc);
     SoundComponent *csc = static_cast<SoundComponent *>(music->components->getComponent("SOUNDCOMPONENT"));
     csc->playMusic(mus_path);
@@ -84,9 +85,6 @@ void GameEngine::renderBackground()
 {
   // std::cout << "rendering" << std::endl;
   // Clear screen
-  SDL_SetRenderDrawColor(gRenderer, 0x55, 0x55, 0x55, 0xFF); // Gray
-  SDL_RenderClear(gRenderer);
-  // Get Texture
   SDL_Texture *texture = ResourceManager::getInstance().loadTexture(
       "Assets/art/background.png", gRenderer);
 
@@ -97,7 +95,6 @@ void GameEngine::renderBackground()
   SDL_Rect Dest = {0, 0, background_width * multiplier,
                    background_height * multiplier};
   SDL_RenderCopy(gRenderer, texture, &Src, &Dest);
-  SDL_RenderPresent(gRenderer);
 }
 
 /* INITIALIZE GAME */
@@ -210,7 +207,6 @@ void GameEngine::run()
     }
     SDL_RenderClear(gRenderer);
     renderBackground();
-
     update();
     // SDL_SetRenderDrawColor(gRenderer, 0x55, 0x55, 0x55, 0xFF); // Gray
     SDL_RenderPresent(gRenderer);
