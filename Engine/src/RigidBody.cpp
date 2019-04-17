@@ -17,6 +17,8 @@ RigidBody::RigidBody(GameObject *go) : Component("RIGIDBODYCOMPONENT") {
     this->velX = 0.0f;
     this->velY = 0.0f;
     this->gravity = -4.0f;
+    this->maxVelY = 10;
+    this->maxVelX = 10;
 }
 
 void RigidBody::update() {
@@ -33,27 +35,67 @@ void RigidBody::update() {
         }
 
         std::vector < GameObject * > objects = ResourceManager::getInstance().gameObjects;
+
         for (int i = 0; i < objects.size(); i++) {
             if (objects[i]->name != this->go->name) {
-                if (x < objects[i]->pos.x + objects[i]->width &&
-                    x + width > objects[i]->pos.x &&
-                    y < objects[i]->pos.y + objects[i]->height &&
-                    y + height > objects[i]->pos.y) {
+                if (x < objects[i]->pos.x + objects[i]->width * objects[i]->scale &&
+                    x + width * this->go->scale > objects[i]->pos.x &&
+                    y < objects[i]->pos.y + objects[i]->height * objects[i]->scale &&
+                    y + height * this->go->scale > objects[i]->pos.y) {
                     if (objects[i]->components->getComponent("RIGIDBODYCOMPONENT") != nullptr) {
                         RigidBody *that = static_cast<RigidBody *>(objects[i]->components->getComponent(
                                 "RIGIDBODYCOMPONENT"));
                         if (!that->isKinematic) {
-                            float momentum1 =
-                                    (float) sqrt(this->velX * this->velX + this->velY * this->velY) *
-                                    this->mass;
-                            float angle = this->velX * that->velX + this->velY * that->velY;
-                            float momentum2 =
-                                    (float) sqrt(that->velX * that->velX + that->velY * that->velY) *
-                                    that->mass;
-                            momentum2 *= cos(angle);
+                            float deltaX = this->velX - that->velX;
+                            float deltaY = this->velY - that->velY;
+                            cout << "deltaX: " << deltaX << endl;
+                            cout << "deltaY: " << deltaY << endl;
+                            float deltaLength = (float) sqrt(deltaX * deltaX + deltaY * deltaY);
+                            cout << "deltaLength: " << deltaLength << endl;
+                            float mtdX = deltaX * ((float) sqrt(this->velX * this->velX + this->velY * this->velY) +
+                                                   (float) sqrt(that->velX * that->velX + that->velY * that->velY) -
+                                                   deltaLength) / deltaLength;
+                            float mtdY = deltaY * ((float) sqrt(this->velX * this->velX + this->velY * this->velY) +
+                                                   (float) sqrt(that->velX * that->velX + that->velY * that->velY) -
+                                                   deltaLength) / deltaLength;
+                            float im1 = 1 / this->mass;
+                            float im2 = 1 / that->mass;
+
+                            cout << "im1: " << im1 << endl;
+                            cout << "im2: " << im2 << endl;
+
+                            this->x += mtdX * (im1/ (im1 + im2));
+                            this->y += mtdY * (im1/ (im1 + im2));
+                            this->velX -= that->velX;
+                            this->velY -= that->velY;
+                            float mtdXM = (float) sqrt(mtdX * mtdX + mtdY * mtdY);
+
+                            cout << "mtdX: " << mtdX << endl;
+                            cout << "mtdXM: " << mtdXM << endl;
+
+                            float vn = this->velX * mtdX/mtdXM + this->velY * mtdY/mtdXM;
+
+                            cout << "Vel Y: " << this->velY << endl;
+
+                            cout << "VN: " << vn << endl;
+                            if (vn <= 0) {
+                                float i = (-1.85f * vn /(im1 + im2));
+                                float impulseX = mtdX/mtdXM * i;
+                                float impulseY = mtdY/mtdXM * i;
+                                this->velX += (impulseX * im1);
+                                this->velY += (impulseY * im1);
+                                if (abs(this->velY) >= this->maxVelY) {
+                                    cout << this->velY << endl;
+                                    if (this->velY < 0) {
+                                        this->velY = -this->maxVelY;
+                                    } else {
+                                        this->velY = this->maxVelY;
+                                    }
+                                }
+                            }
                         } else {
-                            this->velX -= this->velX;
-                            this->velY -= this->velY;
+                            this->velX = 0;
+                            this->velY = 0;
                         }
                     }
                 }
@@ -94,6 +136,7 @@ void RigidBody::update() {
     // update the game objects position
     this->go->pos.x = this->x;
     this->go->pos.y = this->y;
+
 }
 
 void RigidBody::receive(std::string action, std::vector <std::string> args) {}

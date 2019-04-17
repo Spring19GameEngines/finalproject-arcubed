@@ -63,6 +63,7 @@ void RendererComponent::setScale(int scale)
     if (scale > 0)
     {
         this->scale = scale;
+        this->go->scale = scale;
     }
     else
     {
