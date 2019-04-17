@@ -9,6 +9,7 @@
 #include "RendererComponent.h"
 #include "RigidBody.h"
 #include "SoundComponent.h"
+#include "Vector2D.h"
 
 namespace py = pybind11;
 
@@ -177,16 +178,11 @@ PYBIND11_MODULE(mygameengine, m) {
            py::return_value_policy::automatic_reference)
       .def("getComponents", &GameObject::getComponents,
            py::return_value_policy::automatic_reference)
-      .def_readwrite("pos", &GameObject::pos,
-                     py::return_value_policy::automatic_reference)
-      .def_readwrite("name", &GameObject::name,
-                     py::return_value_policy::automatic_reference)
-      .def_readwrite("width", &GameObject::width,
-                     py::return_value_policy::automatic_reference)
-      .def_readwrite("height", &GameObject::height,
-                     py::return_value_policy::automatic_reference)
-      .def_readwrite("components", &GameObject::components,
-                     py::return_value_policy::automatic_reference);
+      .def_readwrite("pos", &GameObject::pos)
+      .def_readwrite("name", &GameObject::name)
+      .def_readwrite("width", &GameObject::width)
+      .def_readwrite("height", &GameObject::height)
+      .def_readwrite("components", &GameObject::components);
 
   /* INPUT COMPONENT */
   py::class_<InputComponent>(m, "InputComponent", component)
@@ -296,4 +292,12 @@ PYBIND11_MODULE(mygameengine, m) {
            py::return_value_policy::automatic_reference)
       .def("getEffectAliases", &SoundComponent::getEffectAliases,
            py::return_value_policy::automatic_reference);
+
+  /* Vector2D */
+  py::class_<Vector2D>(m, "Vector2D", component)
+      .def(py::init())
+      .def_readwrite("x", &Vector2D::x,
+                     py::return_value_policy::automatic_reference)
+      .def_readwrite("y", &Vector2D::y,
+                     py::return_value_policy::automatic_reference);
 }
