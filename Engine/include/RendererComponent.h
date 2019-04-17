@@ -25,27 +25,27 @@ public:
   // Receive messages from the component container
   void receive(string action, vector<string> args);
 
-  void loadAnimation(string path, int frames);
+  void loadAnimation(string path, int startingFrame, int numFrames, int totalSheetFrames);
   void setScale(int scale);
   void setFrameDelay(int delay);
   void setAnimationAlias(string alias, string existingPath);
+  void setCamCentered(bool flag);
   vector<string> getAnimationAliases();
   void setAnimation(string alias);
 
 private:
-  int x;
-  int y;
   int w;
   int h;
   int scale = 1;
   int frameDelay = 0;
   int framesPassed = 0;
   int currentFrame = 0;
+  bool camCentered = false;
   GameObject *go;
   void render();
   std::string currentAnimationPath;
   std::unordered_map<string, SDL_Texture *> loadedAnimation;
-  std::unordered_map<string, int> animationFrames;
+  std::unordered_map<string, std::tuple<int, int>> animationFrames; // starting ->< Number of frames tuple
   std::unordered_map<string, string> animationAliases;
 };
 

@@ -2,14 +2,19 @@
 
 RendererComponent::RendererComponent(GameObject *go) : Component("RENDERERCOMPONENT")
 {
-    this->x = go->pos.x;
-    this->y = go->pos.y;
     this->go = go;
 }
 RendererComponent::RendererComponent(Component *component) : Component(component->getName()) {}
 
 void RendererComponent::update()
 {
+    if (camCentered)
+    {
+        ResourceManager::getInstance().camX = go->pos.x + (this->w * this->scale / 2) -
+                                              (ResourceManager::getInstance().SCREEN_WIDTH / 2);
+        ResourceManager::getInstance().camY = go->pos.y + (this->h * this->scale / 2) -
+                                              (ResourceManager::getInstance().SCREEN_HEIGHT / 2);
+    }
     render();
 }
 
@@ -31,7 +36,7 @@ void RendererComponent::receive(string action, vector<string> args)
     return;
 }
 
-void RendererComponent::loadAnimation(string path, int frames)
+void RendererComponent::loadAnimation(string path, int startingFrame, int numFrames, int totalSheetFrames)
 {
     SDL_Texture *texture = ResourceManager::getInstance().loadTexture(
         path, ResourceManager::getInstance().gRenderer);
@@ -39,12 +44,12 @@ void RendererComponent::loadAnimation(string path, int frames)
     {
         int w, h;
         SDL_QueryTexture(texture, NULL, NULL, &w, &h);
-        this->w = w / frames;
+        this->w = w / totalSheetFrames;
         this->h = h;
         this->go->width = this->w;
         this->go->height = this->h;
         this->loadedAnimation[path] = texture;
-        this->animationFrames[path] = frames;
+        this->animationFrames[path] = std::make_tuple(startingFrame, numFrames);
         setAnimation(path);
     }
     else
@@ -75,6 +80,11 @@ void RendererComponent::setFrameDelay(int delay)
     {
         cout << "Delay must be >= 0" << endl;
     }
+}
+
+void RendererComponent::setCamCentered(bool flag)
+{
+    this->camCentered = flag;
 }
 // Allows the user to set a alias for a loaded sound path
 void RendererComponent::setAnimationAlias(string alias, string existingPath)
@@ -121,8 +131,11 @@ void RendererComponent::setAnimation(string alias)
 }
 void RendererComponent::render()
 {
-    SDL_Rect Dest = {this->x, this->y, this->w * this->scale, this->h * this->scale};
-    SDL_Rect Src = {this->w * currentFrame, 0, this->w, this->h};
+    int camX = ResourceManager::getInstance().camX;
+    int camY = ResourceManager::getInstance().camY;
+
+    SDL_Rect Dest = {(int)go->pos.x - camX, (int)go->pos.y - camY, this->w * this->scale, this->h * this->scale};
+    SDL_Rect Src = {this->w * (currentFrame + std::get<0>(animationFrames[currentAnimationPath])), 0, this->w, this->h};
     SDL_RenderCopy(ResourceManager::getInstance().gRenderer, loadedAnimation[currentAnimationPath], &Src, &Dest);
     if (framesPassed++ == frameDelay)
     {
@@ -130,7 +143,7 @@ void RendererComponent::render()
         currentFrame++;
     }
 
-    if (currentFrame >= animationFrames[currentAnimationPath])
+    if (currentFrame >= std::get<1>(animationFrames[currentAnimationPath]))
     {
         currentFrame = 0;
     }
