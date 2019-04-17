@@ -26,6 +26,9 @@ public:
   void receive(string action, vector<string> args);
 
   void loadAnimation(string path, int startingFrame, int numFrames, int totalSheetFrames);
+  void setAngle(double angle);
+  void setFlipHorizontal(bool flag);
+  void setFlipVertical(bool flag);
   void setScale(int scale);
   void setFrameDelay(int delay);
   void setAnimationAlias(string alias, string existingPath);
@@ -40,8 +43,13 @@ private:
   int frameDelay = 0;
   int framesPassed = 0;
   int currentFrame = 0;
+  double angle = 0;
+  bool flipHorizontal = false;
+  bool flipVertical = false;
+
   bool camCentered = false;
   GameObject *go;
+  SDL_RendererFlip getFlip();
   void render();
   std::string currentAnimationPath;
   std::unordered_map<string, SDL_Texture *> loadedAnimation;
