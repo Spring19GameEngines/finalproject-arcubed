@@ -1,12 +1,96 @@
-#include "GameEngine.h"
-#include "SoundComponent.h"
-
-/* PYBIND */
-
 #include <pybind11/pybind11.h>
+#include "Component.h"
+#include "ComponentContainer.h"
+#include "GameEngine.h"
+#include "GameObject.h"
+#include "SoundComponent.h"
 namespace py = pybind11;
 
+class PyComponent : public Component {
+ public:
+  /* Inherit the constructors */
+  using Component::Component;
+
+  /* Trampoline (need one for each virtual function) */
+  void update() override {
+    PYBIND11_OVERLOAD_PURE(
+        void,      /* Return type */
+        Component, /* Parent class */
+        update     /* Name of function in C++ (must match Python name) */
+    );
+  }
+
+  /* Trampoline (need one for each virtual function) */
+  void send(std::string action, std::vector<std::string> args) override {
+    PYBIND11_OVERLOAD_PURE(
+        void,        /* Return type */
+        Component,   /* Parent class */
+        send,        /* Name of function in C++ (must match Python name) */
+        action, args /* Argument(s) */
+    );
+  }
+
+  void receive(std::string action, std::vector<std::string> args) override {
+    PYBIND11_OVERLOAD_PURE(
+        void,        /* Return type */
+        Component,   /* Parent class */
+        receive,     /* Name of function in C++ (must match Python name) */
+        action, args /* Argument(s) */
+    );
+  }
+
+  void setContainer(ComponentContainer *container) override {
+    PYBIND11_OVERLOAD(
+        void,         /* Return type */
+        Component,    /* Parent class */
+        setContainer, /* Name of function in C++ (must match Python name) */
+        container     /* Argument(s) */
+    );
+  }
+
+  std::string getName() override {
+    PYBIND11_OVERLOAD(
+        std::string, /* Return type */
+        Component,   /* Parent class */
+        getName      /* Name of function in C++ (must match Python name) */
+    );
+  }
+};
+
+/* MODULE */
+
 PYBIND11_MODULE(mygameengine, m) {
+  /* COMPONENT (ABSTRACT) */
+  py::class_<Component, PyComponent> component(m, "Component");
+  component.def(py::init<std::string>(), py::arg("name"))
+      .def("update", &Component::update,
+           py::return_value_policy::automatic_reference)
+      .def("send", &Component::send,
+           py::return_value_policy::automatic_reference)
+      .def("receive", &Component::receive,
+           py::return_value_policy::automatic_reference)
+      .def("setContainer", &Component::setContainer,
+           py::return_value_policy::automatic_reference)
+      .def("getName", &Component::getName,
+           py::return_value_policy::automatic_reference);
+
+  /* COMPONENT CONTAINER */
+  py::class_<ComponentContainer>(m, "ComponentContainer")
+      .def(py::init())
+      .def("update", &ComponentContainer::update,
+           py::return_value_policy::automatic_reference)
+      .def("addComponent", &ComponentContainer::addComponent,
+           py::return_value_policy::automatic_reference)
+      .def("removeComponent", &ComponentContainer::removeComponent,
+           py::return_value_policy::automatic_reference)
+      .def("getComponent", &ComponentContainer::getComponent,
+           py::return_value_policy::automatic_reference)
+      .def("getComponents", &ComponentContainer::getComponents,
+           py::return_value_policy::automatic_reference)
+      .def("send", &ComponentContainer::send,
+           py::return_value_policy::automatic_reference);
+
+  /* GAME ENGINE */
   py::class_<GameEngine>(m, "GameEngine")
       .def("getInstance", &GameEngine::getInstance,
            py::return_value_policy::reference)
@@ -27,9 +111,28 @@ PYBIND11_MODULE(mygameengine, m) {
            py::return_value_policy::automatic_reference)
       .def("run", &GameEngine::run);
 
-  py::class_<SoundComponent>(m, "SoundComponent")
+  /* GAME OBJECT */
+  py::class_<GameObject>(m, "GameObject")
+      .def(py::init<std::string>(), py::arg("name"))
+      .def(py::init<std::string, float, float, float, float>(), py::arg("name"),
+           py::arg("x"), py::arg("y"), py::arg("width"), py::arg("height"))
+      .def("update", &GameObject::update,
+           py::return_value_policy::automatic_reference)
+      .def_readwrite("pos", &GameObject::pos,
+                     py::return_value_policy::automatic_reference)
+      .def_readwrite("name", &GameObject::name,
+                     py::return_value_policy::automatic_reference)
+      .def_readwrite("width", &GameObject::width,
+                     py::return_value_policy::automatic_reference)
+      .def_readwrite("height", &GameObject::height,
+                     py::return_value_policy::automatic_reference)
+      .def_readwrite("components", &GameObject::components,
+                     py::return_value_policy::automatic_reference);
+
+  /* SOUND COMPONENT */
+  py::class_<SoundComponent>(m, "SoundComponent", component)
       .def(py::init())
-      .def(py::init<Component *>(), py::arg("Component"))
+      .def(py::init<Component *>(), py::arg("component"))
       .def("update", &SoundComponent::update,
            py::return_value_policy::automatic_reference)
       .def("loadMusic", &SoundComponent::loadMusic,
