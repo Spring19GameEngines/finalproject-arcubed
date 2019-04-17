@@ -26,18 +26,16 @@ class BoxCollider : public Component {
   void send(string action, vector<string> args);
   void receive(string action, vector<string> args);
 
+  //! Checks to see if this box collider is currently overlapping with the given
+  //! list of game objects
+  vector<string> checkCollision();
+  void shiftPosition(float x, float y);
+
  protected:
   // variables
   float x, y, width, height;
   GameObject* go;
 
-  // functions
-  //! Checks to see if this box collider is currently overlapping with the given
-  //! list of game objects
-  vector<string> checkCollision();
-  void setWidth(float w);
-  void setHeight(float h);
-  void shiftPosition(float x, float y);
 };
 
 #endif
