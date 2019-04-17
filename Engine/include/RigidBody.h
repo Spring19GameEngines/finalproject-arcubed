@@ -11,18 +11,19 @@ class RigidBody : public Component {
   void send(std::string action, std::vector<std::string> args);
   void receive(std::string action, std::vector<std::string> args);
   void setGravity(float g);
-  void shiftPosition(float x, float y);
   void setMass(float mass);
   void setDrag(float drag);
   void setUseGravity(bool huh);
   void setIsKinematic(bool huh);
   void addForce(float x, float y);
-  void setForce(float x, float y);
+  void setForceX(float x);
+  void setForceY(float y);
 
 
  protected:
   // variables
-  float x, y, width, height, mass, drag, velX, velY, maxVelX, maxVelY, gravity;
+  float width, height, mass, drag, velX, velY, maxVelX, maxVelY, gravity;
+  float lastX, lastY;
   bool useGravity, isKinematic;
   GameObject* go;
 };

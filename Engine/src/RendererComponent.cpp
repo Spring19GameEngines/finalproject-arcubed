@@ -57,6 +57,20 @@ void RendererComponent::loadAnimation(string path, int startingFrame, int numFra
         cout << "Failed to load Animation" << endl;
     }
 }
+void RendererComponent::setAngle(double angle)
+{
+    this->angle = angle;
+}
+
+void RendererComponent::setFlipHorizontal(bool flag)
+{
+    this->flipHorizontal = flag;
+}
+
+void RendererComponent::setFlipVertical(bool flag)
+{
+    this->flipVertical = flag;
+}
 
 void RendererComponent::setScale(int scale)
 {
@@ -130,6 +144,26 @@ void RendererComponent::setAnimation(string alias)
         cout << "Could not find animation alias or path" << endl;
     }
 }
+
+SDL_RendererFlip RendererComponent::getFlip()
+{
+    if (flipVertical && flipHorizontal)
+    {
+        return static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
+    }
+    else if (flipVertical)
+    {
+        return SDL_FLIP_VERTICAL;
+    }
+    else if (flipHorizontal)
+    {
+        return SDL_FLIP_HORIZONTAL;
+    }
+    else
+    {
+        return SDL_FLIP_NONE;
+    }
+}
 void RendererComponent::render()
 {
     int camX = ResourceManager::getInstance().camX;
@@ -137,7 +171,7 @@ void RendererComponent::render()
 
     SDL_Rect Dest = {(int)go->pos.x - camX, (int)go->pos.y - camY, this->w * this->scale, this->h * this->scale};
     SDL_Rect Src = {this->w * (currentFrame + std::get<0>(animationFrames[currentAnimationPath])), 0, this->w, this->h};
-    SDL_RenderCopy(ResourceManager::getInstance().gRenderer, loadedAnimation[currentAnimationPath], &Src, &Dest);
+    SDL_RenderCopyEx(ResourceManager::getInstance().gRenderer, loadedAnimation[currentAnimationPath], &Src, &Dest, angle, NULL, getFlip());
     if (framesPassed++ == frameDelay)
     {
         framesPassed = 0;

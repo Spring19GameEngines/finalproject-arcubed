@@ -9,7 +9,7 @@ class CMDGoLeft : public Command
     {
         RigidBody *rb = static_cast<RigidBody *>(this->go->components->getComponent(
             "RIGIDBODYCOMPONENT"));
-        rb->setForce(-3, 0);
+        rb->setForceX(-3);
         // go->pos.x -= 2;
     }
 };

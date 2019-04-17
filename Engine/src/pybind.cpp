@@ -189,8 +189,6 @@ PYBIND11_MODULE(mygameengine, m) {
            py::return_value_policy::automatic_reference)
       .def("setGravity", &RigidBody::setGravity,
            py::return_value_policy::automatic_reference)
-      .def("shiftPosition", &RigidBody::shiftPosition,
-           py::return_value_policy::automatic_reference)
       .def("setMass", &RigidBody::setMass,
            py::return_value_policy::automatic_reference)
       .def("setDrag", &RigidBody::setDrag,
@@ -201,7 +199,9 @@ PYBIND11_MODULE(mygameengine, m) {
            py::return_value_policy::automatic_reference)
       .def("addForce", &RigidBody::addForce,
            py::return_value_policy::automatic_reference)
-      .def("setForce", &RigidBody::setForce,
+      .def("setForceX", &RigidBody::setForceX,
+           py::return_value_policy::automatic_reference)
+      .def("setForceY", &RigidBody::setForceY,
            py::return_value_policy::automatic_reference);
 
   /* RENDERER COMPONENT */
@@ -216,11 +216,19 @@ PYBIND11_MODULE(mygameengine, m) {
            py::return_value_policy::automatic_reference)
       .def("loadAnimation", &RendererComponent::loadAnimation,
            py::return_value_policy::automatic_reference)
+      .def("setAngle", &RendererComponent::setAngle,
+           py::return_value_policy::automatic_reference)
+      .def("setFlipHorizontal", &RendererComponent::setFlipHorizontal,
+           py::return_value_policy::automatic_reference)
+      .def("setFlipVertical", &RendererComponent::setFlipVertical,
+           py::return_value_policy::automatic_reference)
       .def("setScale", &RendererComponent::setScale,
            py::return_value_policy::automatic_reference)
       .def("setFrameDelay", &RendererComponent::setFrameDelay,
            py::return_value_policy::automatic_reference)
       .def("setAnimationAlias", &RendererComponent::setAnimationAlias,
+           py::return_value_policy::automatic_reference)
+      .def("setCamCenter", &RendererComponent::setCamCenter,
            py::return_value_policy::automatic_reference)
       .def("getAnimationAliases", &RendererComponent::getAnimationAliases,
            py::return_value_policy::automatic_reference)
