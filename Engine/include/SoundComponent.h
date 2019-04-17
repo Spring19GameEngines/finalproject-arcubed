@@ -13,9 +13,8 @@ using namespace std;
 /*! \brief Handles all sounds that this object is related to
  *
  */
-class SoundComponent : public Component
-{
-public:
+class SoundComponent : public Component {
+ public:
   //! constructor
   SoundComponent();
   //! constructor - used for static cast
@@ -50,7 +49,7 @@ public:
   //! Returns an array of all effect path aliases
   vector<string> getEffectAliases();
 
-private:
+ private:
   std::unordered_map<string, string> musicAliases;
   std::unordered_map<string, string> effectAliases;
 

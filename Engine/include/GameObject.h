@@ -9,9 +9,8 @@
 /*! \brief a representation of a game object
  *
  */
-class GameObject
-{
-public:
+class GameObject {
+ public:
   //! constructor - Uses Default name and default position
   GameObject(std::string name);
 

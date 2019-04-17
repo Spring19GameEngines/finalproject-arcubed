@@ -4,13 +4,13 @@
 #include <iostream>
 #include <vector>
 
-/*! \brief a generic component that gets added to a gameObject. Contains functions update, send, and receive,
- * which add functionality to the gameObject once these virtual functions are overwritten.
+/*! \brief a generic component that gets added to a gameObject. Contains
+ * functions update, send, and receive, which add functionality to the
+ * gameObject once these virtual functions are overwritten.
  * */
 class ComponentContainer;
-class Component
-{
-public:
+class Component {
+ public:
   //! constructor
   Component(std::string name);
 
@@ -23,7 +23,8 @@ public:
   //! Sends a message to the parent component container
   virtual void send(std::string action, std::vector<std::string> args) = 0;
 
-  //! receives a message sent from the parent component container and adds functionality based upon the message
+  //! receives a message sent from the parent component container and adds
+  //! functionality based upon the message
   virtual void receive(std::string action, std::vector<std::string> args) = 0;
 
   //! sets the parent container of the component
@@ -32,11 +33,11 @@ public:
   //! gets the name of the component
   virtual std::string getName();
 
-protected:
+ protected:
   ComponentContainer *container;
   std::string name;
 
-private:
+ private:
   // Variables
 };
 

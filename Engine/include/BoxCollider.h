@@ -7,11 +7,11 @@
 
 using namespace std;
 
-/*! \brief Box collider extends component. Checks to see if this GameObject is overlapping any other GameObject.
+/*! \brief Box collider extends component. Checks to see if this GameObject is
+ * overlapping any other GameObject.
  */
 class BoxCollider : public Component {
  public:
-
   //! constructor
   BoxCollider(GameObject* go);
 
@@ -21,10 +21,11 @@ class BoxCollider : public Component {
   void send(string action, vector<string> args);
   //! derived from component
   void receive(string action, vector<string> args);
-  //! checks to see if this object has collided with any other object
+  //! checks to see if this object has collided with any other object that has a
+  //! boxcollider
   bool anyCollision();
 
-  //! Checks to see if this box collider is currently overlapping with the given list of game objects
+  //! Returns all gameobjects this box collider is currently overlapping with
   vector<string> checkCollision();
 
  protected:

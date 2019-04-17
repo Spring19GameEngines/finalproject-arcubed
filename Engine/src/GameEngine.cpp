@@ -1,6 +1,4 @@
 #include "GameEngine.h"
-#include "CMDGoLeft.h"
-#include "CMDGoRight.h"
 #include "InputComponent.h"
 #include "RendererComponent.h"
 #include "RigidBody.h"

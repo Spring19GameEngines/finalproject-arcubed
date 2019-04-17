@@ -5,12 +5,11 @@
 #include <vector>
 #include "Component.h"
 
-/*!\brief Holds all the components that are contained by a game object. Allows for messages to be sent
- * to all components of a game object.
+/*!\brief Holds all the components that are contained by a game object. Allows
+ * for messages to be sent to all components of a game object.
  */
-class ComponentContainer
-{
-public:
+class ComponentContainer {
+ public:
   //! constructor
   ComponentContainer();
 
@@ -35,7 +34,7 @@ public:
   //! Send this message to all components
   void send(std::string action, std::vector<std::string> args);
 
-private:
+ private:
   std::vector<Component *> components;
 };
 

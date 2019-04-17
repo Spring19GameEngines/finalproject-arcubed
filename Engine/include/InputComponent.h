@@ -19,12 +19,12 @@
 #include "Command.h"
 using namespace std;
 
-/*! \brief handles all inputs from player and executes commands based upon the input
+/*! \brief handles all inputs from player and executes commands based upon the
+ * input
  *
  */
-class InputComponent : public Component
-{
-public:
+class InputComponent : public Component {
+ public:
   //! constructor
   InputComponent(GameObject *go);
   //! constructor - used for static casting
@@ -36,12 +36,13 @@ public:
   //! derived from component
   void receive(string action, vector<string> args);
 
-  //! binds a reference to a command to the pointer assigned with the desired button
+  //! binds a reference to a command to the pointer assigned with the desired
+  //! button
   void setButton(int key, Command *cmd);
 
-private:
+ private:
   GameObject *go;
   std::unordered_map<SDL_Scancode, Command *> mappedKeys;
 };
 
-#endif // FINALPROJECT_ARCUBED_INPUTCOMPONENT_H
+#endif  // FINALPROJECT_ARCUBED_INPUTCOMPONENT_H

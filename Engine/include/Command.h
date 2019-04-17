@@ -2,12 +2,12 @@
 #define FINALPROJECT_ARCUBED_COMMAND_H
 #include "GameObject.h"
 
-/** \brief Allows for generic commands to be passed to components/objects when certain conditions are met.
- *  A class must extend command and must overwrite execute in order to have the command be read by
- *  the engine.
+/** \brief Allows for generic commands to be passed to components/objects when
+ * certain conditions are met. A class must extend command and must overwrite
+ * execute in order to have the command be read by the engine.
  */
 class Command {
-public:
+ public:
   //! destructor for a command. Gets called when pybind cleans up a game.
   virtual ~Command(){};
 

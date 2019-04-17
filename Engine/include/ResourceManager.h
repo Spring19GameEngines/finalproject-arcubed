@@ -25,9 +25,8 @@
  * Provides support for loading textures, fonts, text, background music, and
  * sound effects
  */
-class ResourceManager
-{
-public:
+class ResourceManager {
+ public:
   //! Gets singleton instance
   static ResourceManager &getInstance();
 
@@ -81,10 +80,10 @@ public:
   //! the camera's y position
   int camY = 0;
 
-private:
-  ResourceManager();                        // Private Singleton
-  ResourceManager(ResourceManager const &); // Avoid copy constructor
-  void operator=(ResourceManager const &);  // Don't allow assignment.
+ private:
+  ResourceManager();                         // Private Singleton
+  ResourceManager(ResourceManager const &);  // Avoid copy constructor
+  void operator=(ResourceManager const &);   // Don't allow assignment.
 
   std::unordered_map<std::string, SDL_Texture *> textureMap;
   std::unordered_map<std::string, TTF_Font *> fontMap;

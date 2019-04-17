@@ -26,14 +26,14 @@
 /*! \brief Represents the state of a game engine
  *
  */
-class GameEngine
-{
-public:
+class GameEngine {
+ public:
   //! Get the state of the game
   static GameEngine &getInstance();
   //! destructor
   ~GameEngine();
-  //! creates a game object and adds it to the list of gameObjects. Uses default position and dimensions
+  //! creates a game object and adds it to the list of gameObjects. Uses default
+  //! position and dimensions
   GameObject *createGameObject(std::string name);
   //! creates a game object and adds it to the list of gameObjects.
   GameObject *createGameObject(std::string name, float x, float y, float w,
@@ -64,10 +64,10 @@ public:
   //! Frame Capping Vars
   const int SCREEN_TICKS_PER_FRAME = 1000 / DESIRED_FRAME_RATE;
 
-private:
-  GameEngine();                       // Private Singleton
-  GameEngine(GameEngine const &);     // Avoid copy constructor
-  void operator=(GameEngine const &); // Don't allow assignment.
+ private:
+  GameEngine();                        // Private Singleton
+  GameEngine(GameEngine const &);      // Avoid copy constructor
+  void operator=(GameEngine const &);  // Don't allow assignment.
   void render();
   bool initSDL();
   bool createWindow(int w, int h);

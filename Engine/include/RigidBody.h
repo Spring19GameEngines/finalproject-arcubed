@@ -10,7 +10,8 @@ class RigidBody : public Component {
  public:
   //! constructor
   RigidBody(GameObject* go);
-  //! derived from component - updates the position of the object every frame after applying gravity
+  //! derived from component - updates the position of the object every frame
+  //! after applying gravity
   void update();
   //! derived from component
   void send(std::string action, std::vector<std::string> args);
