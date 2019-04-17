@@ -15,6 +15,8 @@ public:
   //! constructor - Sets the name and location of the GameObject
   GameObject(std::string name, float x, float y, float w, float h);
 
+  ~GameObject();
+
   // updates the object and it's components
   void update();
   // Adds the given component to this container
@@ -28,6 +30,7 @@ public:
 
   // Get a vector of all components
   std::vector<Component *> getComponents();
+
   // Variables
   Vector2D pos;
   std::string name;

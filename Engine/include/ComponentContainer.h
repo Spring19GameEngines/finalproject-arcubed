@@ -11,6 +11,7 @@ public:
   // constructor - Uses Default name
   ComponentContainer();
 
+  ~ComponentContainer();
   // updates each component
   void update();
 

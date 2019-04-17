@@ -8,7 +8,22 @@
 
 GameEngine::GameEngine() {}
 
+<<<<<<< HEAD
 GameEngine &GameEngine::getInstance() {
+=======
+GameEngine::~GameEngine()
+{
+  for (int i = 0; i < gameObjects.size(); i++)
+  {
+    if (gameObjects[i] != nullptr)
+    {
+      delete gameObjects[i];
+    }
+  }
+}
+GameEngine &GameEngine::getInstance()
+{
+>>>>>>> 55bbf8d3bfcf37200bbfe95bb6e654e6da2a7a48
   static GameEngine *instance = new GameEngine();
   return *instance;
 }
@@ -28,10 +43,21 @@ GameObject *GameEngine::createGameObject(std::string name, float x, float y,
   return obj;
 }
 
+<<<<<<< HEAD
 void GameEngine::deleteGameObject(std::string name) {
   for (int i = 0; i < gameObjects.size(); i++) {
     if (gameObjects[i] != NULL) {
       if (gameObjects[i]->name == name) {
+=======
+void GameEngine::deleteGameObject(std::string name)
+{
+  for (int i = 0; i < gameObjects.size(); i++)
+  {
+    if (gameObjects[i] != nullptr)
+    {
+      if (gameObjects[i]->name == name)
+      {
+>>>>>>> 55bbf8d3bfcf37200bbfe95bb6e654e6da2a7a48
         gameObjects.erase(gameObjects.begin() + i);
       }
     }
@@ -175,8 +201,8 @@ void GameEngine::close() {
   // Destroy window
   SDL_DestroyRenderer(gRenderer);
   SDL_DestroyWindow(gWindow);
-  gWindow = NULL;
-  gRenderer = NULL;
+  gWindow = nullptr;
+  gRenderer = nullptr;
 
   // Quit SDL subsystems
   IMG_Quit();

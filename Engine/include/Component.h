@@ -9,6 +9,7 @@ class Component
 public:
   // constructor
   Component(std::string name);
+  ~Component();
 
   //! updates this component
   virtual void update() = 0;

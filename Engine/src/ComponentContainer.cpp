@@ -2,6 +2,17 @@
 
 ComponentContainer::ComponentContainer() {}
 
+ComponentContainer::~ComponentContainer()
+{
+  for (int i = 0; i < components.size(); i++)
+  {
+    if (components[i] != nullptr)
+    {
+      delete components[i];
+    }
+  }
+}
+
 // updates each component
 void ComponentContainer::update()
 {
@@ -23,7 +34,7 @@ void ComponentContainer::removeComponent(std::string name)
 {
   for (int i = 0; i < components.size(); i++)
   {
-    if (components[i] != NULL)
+    if (components[i] != nullptr)
     {
       if (components[i]->getName() == name)
       {
@@ -55,7 +66,7 @@ void ComponentContainer::send(std::string action,
 {
   for (int i = 0; i < components.size(); i++)
   {
-    if (components[i] != NULL)
+    if (components[i] != nullptr)
     {
       components[i]->receive(action, args);
     }

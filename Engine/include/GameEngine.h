@@ -28,7 +28,7 @@ class GameEngine
 public:
   //! Get the state of the game
   static GameEngine &getInstance();
-
+  ~GameEngine();
   GameObject *createGameObject(std::string name);
   GameObject *createGameObject(std::string name, float x, float y, float w,
                                float h);
