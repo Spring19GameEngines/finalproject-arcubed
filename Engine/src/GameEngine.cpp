@@ -68,6 +68,7 @@ void GameEngine::update()
     RendererComponent *rc = new RendererComponent(music);
     rc->loadAnimation("Assets/art/character.png", 12);
     rc->setScale(3);
+    rc->setFrameDelay(4);
     music->components->addComponent(rc);
     SoundComponent *csc = static_cast<SoundComponent *>(music->components->getComponent("SOUNDCOMPONENT"));
     csc->playMusic(mus_path);

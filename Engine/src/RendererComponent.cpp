@@ -64,6 +64,18 @@ void RendererComponent::setScale(int scale)
         cout << "Scale must be > 0" << endl;
     }
 }
+
+void RendererComponent::setFrameDelay(int delay)
+{
+    if (delay >= 0)
+    {
+        this->frameDelay = delay;
+    }
+    else
+    {
+        cout << "Delay must be >= 0" << endl;
+    }
+}
 // Allows the user to set a alias for a loaded sound path
 void RendererComponent::setAnimationAlias(string alias, string existingPath)
 {
@@ -112,7 +124,12 @@ void RendererComponent::render()
     SDL_Rect Dest = {this->x, this->y, this->w * this->scale, this->h * this->scale};
     SDL_Rect Src = {this->w * currentFrame, 0, this->w, this->h};
     SDL_RenderCopy(ResourceManager::getInstance().gRenderer, loadedAnimation[currentAnimationPath], &Src, &Dest);
-    currentFrame++;
+    if (framesPassed++ == frameDelay)
+    {
+        framesPassed = 0;
+        currentFrame++;
+    }
+
     if (currentFrame >= animationFrames[currentAnimationPath])
     {
         currentFrame = 0;

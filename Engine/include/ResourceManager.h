@@ -70,6 +70,8 @@ public:
 
   std::vector<GameObject *> gameObjects;
   SDL_Renderer *gRenderer;
+  int camX = 0;
+  int camY = 0;
 
 private:
   ResourceManager();                        // Private Singleton

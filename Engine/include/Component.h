@@ -23,8 +23,8 @@ public:
   virtual void send(std::string action, std::vector<std::string> args) = 0;
 
   virtual void receive(std::string action, std::vector<std::string> args) = 0;
-  void setContainer(ComponentContainer *container);
-  std::string getName();
+  virtual void setContainer(ComponentContainer *container);
+  virtual std::string getName();
 
 protected:
   ComponentContainer *container;
