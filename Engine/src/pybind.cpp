@@ -72,7 +72,7 @@ class PyComponent : public Component {
         void,         /* Return type */
         Component,    /* Parent class */
         setContainer, /* Name of function in C++ (must match Python name) */
-        container,    /* Argument(s) */
+        container     /* Argument(s) */
     );
   }
 
@@ -228,7 +228,7 @@ PYBIND11_MODULE(mygameengine, m) {
            py::return_value_policy::automatic_reference)
       .def("setAnimationAlias", &RendererComponent::setAnimationAlias,
            py::return_value_policy::automatic_reference)
-      .def("setCamCenter", &RendererComponent::setCamCenter,
+      .def("setCamCentered", &RendererComponent::setCamCentered,
            py::return_value_policy::automatic_reference)
       .def("getAnimationAliases", &RendererComponent::getAnimationAliases,
            py::return_value_policy::automatic_reference)

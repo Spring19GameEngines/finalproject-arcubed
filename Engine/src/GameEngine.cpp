@@ -51,35 +51,10 @@ GameObject *GameEngine::getGameObject(std::string name) {
   return nullptr;
 }
 
-<<<<<<< HEAD
 void GameEngine::update() {
   for (GameObject *obj : gameObjects) {
-    obj->
-
-        update();
-=======
-void GameEngine::update()
-{
-  for (GameObject *obj : gameObjects)
-  {
     obj->update();
->>>>>>> 0de2522b2cbb9f3ffb3bb46c9bbaee6b8a89f27e
   }
-}
-
-void GameEngine::renderBackground() {
-  // std::cout << "rendering" << std::endl;
-  // Clear screen
-  SDL_Texture *texture = ResourceManager::getInstance().loadTexture(
-      "Assets/art/background.png", gRenderer);
-
-  int background_width = 384;
-  int background_height = 240;
-  int multiplier = 4;
-  SDL_Rect Src = {0, 0, background_width, background_height};
-  SDL_Rect Dest = {0, 0, background_width * multiplier,
-                   background_height * multiplier};
-  SDL_RenderCopy(gRenderer, texture, &Src, &Dest);
 }
 
 /* INITIALIZE GAME */
@@ -173,11 +148,11 @@ void GameEngine::run() {
         }
       }
     }
+    SDL_SetRenderDrawColor(gRenderer, 0x55, 0x55, 0x55, 0xFF);  // Gray
     SDL_RenderClear(gRenderer);
-    renderBackground();
     update();
-    // SDL_SetRenderDrawColor(gRenderer, 0x55, 0x55, 0x55, 0xFF); // Gray
     SDL_RenderPresent(gRenderer);
+
     // FPS Counter
     fpsRendered++;  // Count frame
     // If one second has past, print the FPS and reset
