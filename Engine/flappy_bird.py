@@ -71,7 +71,7 @@ class DriftLeft(Component):
             return
 
         rb = self.go.getComponent("RIGIDBODYCOMPONENT")
-        rb.setForceX(-4)
+        rb.setForceX(-6)
 
         if 98 < self.go.pos.x < 102:
             if self.go.name == "BotPipe1":
