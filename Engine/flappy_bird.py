@@ -47,7 +47,7 @@ class CheckLoss(Component):
 
         if not lost:
             hitbox = self.go.getComponent("BOXCOLLIDERCOMPONENT")
-            if hitbox.anyCollision():
+            if hitbox.anyCollision() or self.go.pos.y > 756 or self.go.pos.y < 0:
                 sc = self.go.getComponent("SOUNDCOMPONENT")
                 sc.playEffect(hit_sound)
                 lost = True
