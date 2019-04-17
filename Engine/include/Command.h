@@ -1,10 +1,18 @@
 #ifndef FINALPROJECT_ARCUBED_COMMAND_H
 #define FINALPROJECT_ARCUBED_COMMAND_H
-
-class Command {
- public:
+#include "GameObject.h"
+class Command
+{
+public:
   virtual ~Command(){};
   virtual void execute() = 0;
+  void setGameObject(GameObject *go)
+  {
+    this->go = go;
+  }
+
+protected:
+  GameObject *go;
 };
 
 // NOTE: All player made commands have to implement Command and overwrite the

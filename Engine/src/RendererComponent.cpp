@@ -2,8 +2,6 @@
 
 RendererComponent::RendererComponent(GameObject *go) : Component("RENDERERCOMPONENT")
 {
-    this->x = go->pos.x;
-    this->y = go->pos.y;
     this->go = go;
 }
 RendererComponent::RendererComponent(Component *component) : Component(component->getName()) {}
@@ -12,9 +10,9 @@ void RendererComponent::update()
 {
     if (camCentered)
     {
-        ResourceManager::getInstance().camX = this->x + (this->w * this->scale / 2) -
+        ResourceManager::getInstance().camX = go->pos.x + (this->w * this->scale / 2) -
                                               (ResourceManager::getInstance().SCREEN_WIDTH / 2);
-        ResourceManager::getInstance().camY = this->y + (this->h * this->scale / 2) -
+        ResourceManager::getInstance().camY = go->pos.y + (this->h * this->scale / 2) -
                                               (ResourceManager::getInstance().SCREEN_HEIGHT / 2);
     }
     render();
@@ -136,7 +134,7 @@ void RendererComponent::render()
     int camX = ResourceManager::getInstance().camX;
     int camY = ResourceManager::getInstance().camY;
 
-    SDL_Rect Dest = {this->x - camX, this->y - camY, this->w * this->scale, this->h * this->scale};
+    SDL_Rect Dest = {(int)go->pos.x - camX, (int)go->pos.y - camY, this->w * this->scale, this->h * this->scale};
     SDL_Rect Src = {this->w * currentFrame, 0, this->w, this->h};
     SDL_RenderCopy(ResourceManager::getInstance().gRenderer, loadedAnimation[currentAnimationPath], &Src, &Dest);
     if (framesPassed++ == frameDelay)
