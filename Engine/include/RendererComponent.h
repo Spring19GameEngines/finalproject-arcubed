@@ -25,7 +25,7 @@ public:
   // Receive messages from the component container
   void receive(string action, vector<string> args);
 
-  void loadAnimation(string path, int frames);
+  void loadAnimation(string path, int startingFrame, int numFrames, int totalSheetFrames);
   void setScale(int scale);
   void setFrameDelay(int delay);
   void setAnimationAlias(string alias, string existingPath);
@@ -45,7 +45,7 @@ private:
   void render();
   std::string currentAnimationPath;
   std::unordered_map<string, SDL_Texture *> loadedAnimation;
-  std::unordered_map<string, int> animationFrames;
+  std::unordered_map<string, std::tuple<int, int>> animationFrames; // starting ->< Number of frames tuple
   std::unordered_map<string, string> animationAliases;
 };
 

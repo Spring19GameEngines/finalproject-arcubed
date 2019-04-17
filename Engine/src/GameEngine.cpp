@@ -3,6 +3,7 @@
 #include "RendererComponent.h"
 #include "InputComponent.h"
 #include "CMDGoLeft.h"
+#include "CMDGoRight.h"
 GameEngine::GameEngine() {}
 
 GameEngine &GameEngine::getInstance()
@@ -68,7 +69,7 @@ void GameEngine::update()
     sc->loadEffect(sfx_path);
     music->components->addComponent(sc);
     RendererComponent *rc = new RendererComponent(music);
-    rc->loadAnimation("Assets/art/character.png", 12);
+    rc->loadAnimation("Assets/art/character.png", 6, 6, 12);
     rc->setScale(3);
     rc->setFrameDelay(4);
     // rc->setCamCentered(true);
@@ -76,7 +77,9 @@ void GameEngine::update()
     // input
     InputComponent *ic = new InputComponent(music);
     CMDGoLeft *goLeft = new CMDGoLeft();
+    CMDGoRight *goRight = new CMDGoRight();
     ic->setButton(SDL_SCANCODE_A, goLeft);
+    ic->setButton(SDL_SCANCODE_D, goRight);
     music->components->addComponent(ic);
     SoundComponent *csc = static_cast<SoundComponent *>(music->components->getComponent("SOUNDCOMPONENT"));
     csc->playMusic(mus_path);

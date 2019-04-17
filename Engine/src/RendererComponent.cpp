@@ -36,7 +36,7 @@ void RendererComponent::receive(string action, vector<string> args)
     return;
 }
 
-void RendererComponent::loadAnimation(string path, int frames)
+void RendererComponent::loadAnimation(string path, int startingFrame, int numFrames, int totalSheetFrames)
 {
     SDL_Texture *texture = ResourceManager::getInstance().loadTexture(
         path, ResourceManager::getInstance().gRenderer);
@@ -44,12 +44,12 @@ void RendererComponent::loadAnimation(string path, int frames)
     {
         int w, h;
         SDL_QueryTexture(texture, NULL, NULL, &w, &h);
-        this->w = w / frames;
+        this->w = w / totalSheetFrames;
         this->h = h;
         this->go->width = this->w;
         this->go->height = this->h;
         this->loadedAnimation[path] = texture;
-        this->animationFrames[path] = frames;
+        this->animationFrames[path] = std::make_tuple(startingFrame, numFrames);
         setAnimation(path);
     }
     else
@@ -135,7 +135,7 @@ void RendererComponent::render()
     int camY = ResourceManager::getInstance().camY;
 
     SDL_Rect Dest = {(int)go->pos.x - camX, (int)go->pos.y - camY, this->w * this->scale, this->h * this->scale};
-    SDL_Rect Src = {this->w * currentFrame, 0, this->w, this->h};
+    SDL_Rect Src = {this->w * (currentFrame + std::get<0>(animationFrames[currentAnimationPath])), 0, this->w, this->h};
     SDL_RenderCopy(ResourceManager::getInstance().gRenderer, loadedAnimation[currentAnimationPath], &Src, &Dest);
     if (framesPassed++ == frameDelay)
     {
@@ -143,7 +143,7 @@ void RendererComponent::render()
         currentFrame++;
     }
 
-    if (currentFrame >= animationFrames[currentAnimationPath])
+    if (currentFrame >= std::get<1>(animationFrames[currentAnimationPath]))
     {
         currentFrame = 0;
     }
