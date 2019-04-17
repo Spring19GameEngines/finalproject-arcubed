@@ -3,28 +3,33 @@
 
 #include <iostream>
 #include <vector>
+
+/*! \brief a generic component that gets added to a gameObject. Contains functions update, send, and receive,
+ * which add functionality to the gameObject once these virtual functions are overwritten.
+ * */
 class ComponentContainer;
 class Component
 {
 public:
-  // constructor
+  //! constructor
   Component(std::string name);
+
+  //! destructor. Gets called when pybind cleans up a game
   ~Component();
 
-  //! updates this component
+  //! updates this component. Called once per game loop
   virtual void update() = 0;
-  //
-  //  //! takes a string name Action, and performs the action based upon
-  //  parameters virtual vector<string> action(string action, vector<string>
-  //  args) = 0;
 
-  // Sends a message to the parent component container
-  // TODO:: If we could find away to define this function in the cpp without
-  // ruining the forward declaration that would be awesome
+  //! Sends a message to the parent component container
   virtual void send(std::string action, std::vector<std::string> args) = 0;
 
+  //! receives a message sent from the parent component container and adds functionality based upon the message
   virtual void receive(std::string action, std::vector<std::string> args) = 0;
+
+  //! sets the parent container of the component
   virtual void setContainer(ComponentContainer *container);
+
+  //! gets the name of the component
   virtual std::string getName();
 
 protected:

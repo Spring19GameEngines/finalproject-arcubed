@@ -18,24 +18,27 @@
 #include <unordered_map>
 #include "Command.h"
 using namespace std;
+
+/*! \brief handles all inputs from player and executes commands based upon the input
+ *
+ */
 class InputComponent : public Component
 {
 public:
-  // constructor
+  //! constructor
   InputComponent(GameObject *go);
+  //! constructor - used for static casting
   InputComponent(Component *component);
-  // handles input
+  //! derived from component - handles input
   void update();
-  // send to container
+  //! derived from component
   void send(string action, vector<string> args);
-  // Receive messages from the component container
+  //! derived from component
   void receive(string action, vector<string> args);
 
-  // binds a reference to a command to the pointer assigned with the desired
-  // button
+  //! binds a reference to a command to the pointer assigned with the desired button
   void setButton(int key, Command *cmd);
 
-  // HAVE TO COME BACK TO THIS TO FIX
 private:
   GameObject *go;
   std::unordered_map<SDL_Scancode, Command *> mappedKeys;

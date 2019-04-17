@@ -13,27 +13,42 @@
 #include "ResourceManager.h"
 using namespace std;
 
+/*! \brief handles rendering for the parent gameObject
+ *
+ */
 class RendererComponent : public Component
 {
 public:
-  // constructor
+  //! constructor
   RendererComponent(GameObject *go);
+  //! constructor - used for static cast
   RendererComponent(Component *component);
+  //! derived from component - loops through the currently selected animation frames
   void update();
-  // send to container
+  //! derived from component
   void send(string action, vector<string> args);
-  // Receive messages from the component container
+  //! derived from component
   void receive(string action, vector<string> args);
 
+  //! loads an animation from the given path and stores the data of the starting frame, num frames, and total frames
   void loadAnimation(string path, int startingFrame, int numFrames, int totalSheetFrames);
+  //! sets the angle for the sprite to be rotated by
   void setAngle(double angle);
+  //! sets whether or not the sprite needs to be flipped horizontally
   void setFlipHorizontal(bool flag);
+  //! sets whether or not the sprite needs to be flipped vertically
   void setFlipVertical(bool flag);
+  //! sets the scale that the object will be multiplied by when rendered
   void setScale(int scale);
+  //! sets the delay in frames before the animation moves to the next frame
   void setFrameDelay(int delay);
+  //! sets an alias for the path to the sprite sheet.
   void setAnimationAlias(string alias, string existingPath);
+  //! sets whether or not this object is the center of the camera
   void setCamCentered(bool flag);
+  //! gets the list of aliases for the file path
   vector<string> getAnimationAliases();
+  //! sets the current animation that will be used to render the object.
   void setAnimation(string alias);
 
 private:
