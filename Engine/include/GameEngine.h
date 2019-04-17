@@ -23,8 +23,9 @@
 #include "GameObject.h"
 #include "ResourceManager.h"
 
-class GameEngine {
- public:
+class GameEngine
+{
+public:
   //! Get the state of the game
   static GameEngine &getInstance();
 
@@ -52,11 +53,10 @@ class GameEngine {
   const int DESIRED_FRAME_RATE = 60;
   const int SCREEN_TICKS_PER_FRAME = 1000 / DESIRED_FRAME_RATE;
 
- private:
-  GameEngine();                        // Private Singleton
-  GameEngine(GameEngine const &);      // Avoid copy constructor
-  void operator=(GameEngine const &);  // Don't allow assignment.
-  void renderBackground();
+private:
+  GameEngine();                       // Private Singleton
+  GameEngine(GameEngine const &);     // Avoid copy constructor
+  void operator=(GameEngine const &); // Don't allow assignment.
   void render();
   bool initSDL();
   bool createWindow(int w, int h);
