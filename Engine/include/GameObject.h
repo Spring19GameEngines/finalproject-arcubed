@@ -6,6 +6,9 @@
 #include "ComponentContainer.h"
 #include "Vector2D.h"
 
+/*! \brief a representation of a game object
+ *
+ */
 class GameObject
 {
 public:
@@ -15,27 +18,32 @@ public:
   //! constructor - Sets the name and location of the GameObject
   GameObject(std::string name, float x, float y, float w, float h);
 
+  //! destructor
   ~GameObject();
 
-  // updates the object and it's components
+  //! updates the object and it's components
   void update();
-  // Adds the given component to this container
+  //! Adds the given component to this container
   void addComponent(Component *comp);
 
-  // Removes a component with the given ID from this container
+  //! Removes a component with the given ID from this container
   void removeComponent(std::string name);
 
-  // Get a component with the given id
+  //! Get a component with the given id
   Component *getComponent(std::string name);
 
-  // Get a vector of all components
+  //! Get a vector of all components
   std::vector<Component *> getComponents();
 
-  // Variables
+  //! Variables
   Vector2D pos;
+  //! Variables
   std::string name;
+  //! Variables
   float width, height;
+  //! Variables
   int scale = 1;
+  //! Variables
   ComponentContainer *components;
 };
 

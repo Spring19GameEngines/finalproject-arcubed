@@ -5,23 +5,26 @@
 #include <vector>
 #include "GameObject.h"
 
-/**
- * A BoxCollider object. Has a check collision function which returns true if
- * this block is overlapping with the given block.
- */
-
 using namespace std;
 
+/*! \brief Box collider extends component. Checks to see if this GameObject is overlapping any other GameObject.
+ */
 class BoxCollider : public Component {
  public:
+
+  //! constructor
   BoxCollider(GameObject* go);
+
+  //! derived from component
   void update();
+  //! derived from component
   void send(string action, vector<string> args);
+  //! derived from component
   void receive(string action, vector<string> args);
+  //! checks to see if this object has collided with any other object
   bool anyCollision();
 
-  //! Checks to see if this box collider is currently overlapping with the given
-  //! list of game objects
+  //! Checks to see if this box collider is currently overlapping with the given list of game objects
   vector<string> checkCollision();
 
  protected:

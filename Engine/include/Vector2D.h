@@ -8,11 +8,15 @@
 // Forward references of each of the structs
 struct Vector2D;
 
-//! This class represents any vector within the game
+/*! \brief Represents vectors within the engine
+ *
+ */
+
 struct Vector2D {
   float x;
   float y;
 
+  //! uses default constructor
   Vector2D() = default;  // Ignore this one
 
   //! This initializes the pair: a to x, b to y
@@ -21,6 +25,7 @@ struct Vector2D {
     y = b;
   }
 
+  //! prints the values within the vector
   std::string toString() {
     return "(" + std::to_string(x) + ", " + std::to_string(y) + ")";
   }

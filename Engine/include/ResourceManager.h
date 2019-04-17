@@ -38,10 +38,10 @@ public:
   void shutDown();
 
   void storeSDLRenderer(SDL_Renderer *gRenderer);
-  // Store gameObject pointers for global reference
+  //! Store gameObject pointers for global reference
   void storeGameObject(GameObject *gameObject);
 
-  // Remove gameObject 44from global reference
+  //! Remove gameObject from global reference
   void removeGameObject(std::string name);
 
   //! Loads texture from map and saves to map if loaded for the first time
@@ -68,11 +68,17 @@ public:
   //! Loads music from map and saves to map if loaded for the first time
   Mix_Music *loadMusic(const std::string &path);
 
+  //! a list of all game objects currently being stored in the engine
   std::vector<GameObject *> gameObjects;
+  //! the renderer being used to draw the scene
   SDL_Renderer *gRenderer;
+  //! the width of the screen
   int SCREEN_WIDTH = 0;
+  //! the height of the screen
   int SCREEN_HEIGHT = 0;
+  //! the camera's x position
   int camX = 0;
+  //! the camera's y position
   int camY = 0;
 
 private:
