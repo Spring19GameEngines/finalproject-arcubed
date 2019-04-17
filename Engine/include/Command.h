@@ -5,7 +5,7 @@ class Command {
  public:
   virtual ~Command(){};
   virtual void execute() = 0;
-  void setGameObject(GameObject *go) { this->go = go; }
+  virtual void setGameObject(GameObject *go) { this->go = go; }
 
  protected:
   GameObject *go;

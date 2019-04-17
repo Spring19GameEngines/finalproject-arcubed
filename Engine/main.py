@@ -23,13 +23,16 @@ character.components.addComponent(rc)
 
 
 class MoveCommand(mygameengine.Command):
+    def setGameObject(self, gameobject):
+        self.go = gameobject
+
     def execute(self):
-        print(1)
+        self.go.pos.x -= 2
 
 
 input = mygameengine.InputComponent(character)
 com = MoveCommand()
 input.setButton(4, com)
-
+character.components.addComponent(input)
 
 engine.run()

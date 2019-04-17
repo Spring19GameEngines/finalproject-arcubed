@@ -22,6 +22,15 @@ class PyCommand : public Command {
         execute  /* Name of function in C++ (must match Python name) */
     );
   }
+
+  /* Trampoline (need one for each virtual function) */
+  void setGameObject(GameObject *go) override {
+    PYBIND11_OVERLOAD(
+        void,          /* Return type */
+        Command,       /* Parent class */
+        setGameObject, /* Name of function in C++ (must match Python name) */
+        go);
+  }
 };
 
 class PyComponent : public Component {
