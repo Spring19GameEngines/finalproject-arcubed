@@ -21,3 +21,20 @@ GameObject::GameObject(std::string name, float x, float y, float w, float h)
 
 // updates the object and it's components
 void GameObject::update() { components->update(); };
+
+void GameObject::addComponent(Component *comp)
+{
+  this->components->addComponent(comp);
+}
+void GameObject::removeComponent(std::string name)
+{
+  this->components->removeComponent(name);
+}
+Component *GameObject::getComponent(std::string name)
+{
+  return this->components->getComponent(name);
+}
+std::vector<Component *> GameObject::getComponents()
+{
+  return this->components->getComponents();
+}
