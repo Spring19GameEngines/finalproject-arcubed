@@ -1,7 +1,7 @@
 import mygameengine
 
 engine = mygameengine.GameEngine.getInstance()
-engine.init(1080, 720)
+engine.init(420, 630)
 
 mus_path = "Assets/sound/music/level1.mp3"
 
