@@ -21,18 +21,33 @@ rc.setScale(3)
 rc.setFrameDelay(4)
 character.components.addComponent(rc)
 
+# RigidBody
+rb = mygameengine.RigidBody(character)
+rb.setUseGravity(False)
+rb.setIsKinematic(False)
+character.components.addComponent(rb)
 
-class MoveCommand(mygameengine.Command):
+
+# Input
+class Move(mygameengine.Command):
+    def __init__(self, x, y):
+        mygameengine.Command.__init__(self)
+        self.x = x
+        self.y = y
+
     def setGameObject(self, gameobject):
         self.go = gameobject
 
     def execute(self):
-        self.go.pos.x -= 2
+        rigidbody = self.go.components.getComponent("RIGIDBODYCOMPONENT")
+        rigidbody.setForce(self.x, self.y)
 
 
 input = mygameengine.InputComponent(character)
-com = MoveCommand()
-input.setButton(4, com)
+mLeft = Move(-3, 0)
+mRight = Move(3, 0)
+input.setButton(4, mLeft)
+input.setButton(7, mRight)
 character.components.addComponent(input)
 
 engine.run()

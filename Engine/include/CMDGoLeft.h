@@ -7,9 +7,10 @@ class CMDGoLeft : public Command
   public:
     void execute()
     {
-        // RigidBody *rb = static_cast<RigidBody>(this->go.components.getComponent("RIGIDBODYCOMPONENT"));
-        std::cout << "GOLEFT" << std::endl;
-        go->pos.x -= 2;
+        RigidBody *rb = static_cast<RigidBody *>(this->go->components->getComponent(
+            "RIGIDBODYCOMPONENT"));
+        rb->setForce(-3, 0);
+        // go->pos.x -= 2;
     }
 };
 

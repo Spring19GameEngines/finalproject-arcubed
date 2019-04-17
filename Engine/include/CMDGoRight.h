@@ -7,8 +7,9 @@ class CMDGoRight : public Command
   public:
     void execute()
     {
-        // RigidBody *rb = static_cast<RigidBody>(this->go.components.getComponent("RIGIDBODYCOMPONENT"));
-        go->pos.x += 2;
+        RigidBody *rb = static_cast<RigidBody *>(this->go->components->getComponent(
+            "RIGIDBODYCOMPONENT"));
+        rb->setForce(3, 0);
     }
 };
 

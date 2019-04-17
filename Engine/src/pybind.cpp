@@ -6,6 +6,7 @@
 #include "GameObject.h"
 #include "InputComponent.h"
 #include "RendererComponent.h"
+#include "RigidBody.h"
 #include "SoundComponent.h"
 
 namespace py = pybind11;
@@ -19,7 +20,7 @@ class PyCommand : public Command {
     PYBIND11_OVERLOAD_PURE(
         void,    /* Return type */
         Command, /* Parent class */
-        execute  /* Name of function in C++ (must match Python name) */
+        execute, /* Name of function in C++ (must match Python name) */
     );
   }
 
@@ -43,7 +44,7 @@ class PyComponent : public Component {
     PYBIND11_OVERLOAD_PURE(
         void,      /* Return type */
         Component, /* Parent class */
-        update     /* Name of function in C++ (must match Python name) */
+        update,    /* Name of function in C++ (must match Python name) */
     );
   }
 
@@ -71,7 +72,7 @@ class PyComponent : public Component {
         void,         /* Return type */
         Component,    /* Parent class */
         setContainer, /* Name of function in C++ (must match Python name) */
-        container     /* Argument(s) */
+        container,    /* Argument(s) */
     );
   }
 
@@ -79,7 +80,7 @@ class PyComponent : public Component {
     PYBIND11_OVERLOAD(
         std::string, /* Return type */
         Component,   /* Parent class */
-        getName      /* Name of function in C++ (must match Python name) */
+        getName,     /* Name of function in C++ (must match Python name) */
     );
   }
 };
@@ -164,7 +165,7 @@ PYBIND11_MODULE(mygameengine, m) {
       .def_readwrite("components", &GameObject::components,
                      py::return_value_policy::automatic_reference);
 
-  /* RENDERER COMPONENT */
+  /* INPUT COMPONENT */
   py::class_<InputComponent>(m, "InputComponent", component)
       .def(py::init<GameObject *>(), py::arg("gameobject"))
       .def(py::init<Component *>(), py::arg("component"))
@@ -175,6 +176,32 @@ PYBIND11_MODULE(mygameengine, m) {
       .def("receive", &InputComponent::receive,
            py::return_value_policy::automatic_reference)
       .def("setButton", &InputComponent::setButton,
+           py::return_value_policy::automatic_reference);
+
+  /* RIGID BODY COMPONENT */
+  py::class_<RigidBody>(m, "RigidBody", component)
+      .def(py::init<GameObject *>(), py::arg("gameobject"))
+      .def("update", &RigidBody::update,
+           py::return_value_policy::automatic_reference)
+      .def("send", &RigidBody::send,
+           py::return_value_policy::automatic_reference)
+      .def("receive", &RigidBody::receive,
+           py::return_value_policy::automatic_reference)
+      .def("setGravity", &RigidBody::setGravity,
+           py::return_value_policy::automatic_reference)
+      .def("shiftPosition", &RigidBody::shiftPosition,
+           py::return_value_policy::automatic_reference)
+      .def("setMass", &RigidBody::setMass,
+           py::return_value_policy::automatic_reference)
+      .def("setDrag", &RigidBody::setDrag,
+           py::return_value_policy::automatic_reference)
+      .def("setUseGravity", &RigidBody::setUseGravity,
+           py::return_value_policy::automatic_reference)
+      .def("setIsKinematic", &RigidBody::setIsKinematic,
+           py::return_value_policy::automatic_reference)
+      .def("addForce", &RigidBody::addForce,
+           py::return_value_policy::automatic_reference)
+      .def("setForce", &RigidBody::setForce,
            py::return_value_policy::automatic_reference);
 
   /* RENDERER COMPONENT */
