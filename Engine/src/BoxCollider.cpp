@@ -33,12 +33,3 @@ vector<string> BoxCollider::checkCollision() {
   }
   return hits;
 }
-
-void BoxCollider::setWidth(float w) { this->width = w; }
-
-void BoxCollider::setHeight(float h) { this->height = h; }
-
-void BoxCollider::shiftPosition(float x, float y) {
-  this->x += x;
-  this->y += y;
-};

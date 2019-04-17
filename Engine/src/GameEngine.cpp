@@ -1,6 +1,7 @@
 #include "GameEngine.h"
 #include "SoundComponent.h"
 #include "RendererComponent.h"
+#include "RigidBody.h"
 GameEngine::GameEngine() {}
 
 GameEngine &GameEngine::getInstance()
@@ -57,6 +58,7 @@ void GameEngine::update()
 {
   if (gameObjects.size() < 1)
   {
+//    Music
     std::string mus_path = "Assets/sound/music/level1.mp3";
     std::string sfx_path = "Assets/sound/effects/spin_jump.wav";
 
@@ -65,15 +67,19 @@ void GameEngine::update()
     sc->loadMusic(mus_path);
     sc->loadEffect(sfx_path);
     music->components->addComponent(sc);
+
+//    Renderer
     RendererComponent *rc = new RendererComponent(music);
     rc->loadAnimation("Assets/art/character.png", 12);
     rc->setScale(3);
     rc->setFrameDelay(4);
-    rc->setCamCentered(true);
+    rc->setCamCentered(false);
     music->components->addComponent(rc);
-    SoundComponent *csc = static_cast<SoundComponent *>(music->components->getComponent("SOUNDCOMPONENT"));
-    csc->playMusic(mus_path);
-    csc->playEffect(sfx_path);
+
+    RigidBody *rb1 = new RigidBody(music);
+    rb1->setUseGravity(true);
+    rb1->setIsKinematic(false);
+    music->components->addComponent(rb1);
   }
 
   for (GameObject *obj : gameObjects)
