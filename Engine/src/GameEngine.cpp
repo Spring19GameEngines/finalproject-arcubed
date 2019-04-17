@@ -51,11 +51,19 @@ GameObject *GameEngine::getGameObject(std::string name) {
   return nullptr;
 }
 
+<<<<<<< HEAD
 void GameEngine::update() {
   for (GameObject *obj : gameObjects) {
     obj->
 
         update();
+=======
+void GameEngine::update()
+{
+  for (GameObject *obj : gameObjects)
+  {
+    obj->update();
+>>>>>>> 0de2522b2cbb9f3ffb3bb46c9bbaee6b8a89f27e
   }
 }
 
