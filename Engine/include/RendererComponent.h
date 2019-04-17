@@ -29,6 +29,7 @@ public:
   void setScale(int scale);
   void setFrameDelay(int delay);
   void setAnimationAlias(string alias, string existingPath);
+  void setCamCentered(bool flag);
   vector<string> getAnimationAliases();
   void setAnimation(string alias);
 
@@ -41,6 +42,7 @@ private:
   int frameDelay = 0;
   int framesPassed = 0;
   int currentFrame = 0;
+  bool camCentered = false;
   GameObject *go;
   void render();
   std::string currentAnimationPath;

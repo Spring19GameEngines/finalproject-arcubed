@@ -10,6 +10,13 @@ RendererComponent::RendererComponent(Component *component) : Component(component
 
 void RendererComponent::update()
 {
+    if (camCentered)
+    {
+        ResourceManager::getInstance().camX = this->x + (this->w * this->scale / 2) -
+                                              (ResourceManager::getInstance().SCREEN_WIDTH / 2);
+        ResourceManager::getInstance().camY = this->y + (this->h * this->scale / 2) -
+                                              (ResourceManager::getInstance().SCREEN_HEIGHT / 2);
+    }
     render();
 }
 
@@ -76,6 +83,11 @@ void RendererComponent::setFrameDelay(int delay)
         cout << "Delay must be >= 0" << endl;
     }
 }
+
+void RendererComponent::setCamCentered(bool flag)
+{
+    this->camCentered = flag;
+}
 // Allows the user to set a alias for a loaded sound path
 void RendererComponent::setAnimationAlias(string alias, string existingPath)
 {
@@ -121,7 +133,10 @@ void RendererComponent::setAnimation(string alias)
 }
 void RendererComponent::render()
 {
-    SDL_Rect Dest = {this->x, this->y, this->w * this->scale, this->h * this->scale};
+    int camX = ResourceManager::getInstance().camX;
+    int camY = ResourceManager::getInstance().camY;
+
+    SDL_Rect Dest = {this->x - camX, this->y - camY, this->w * this->scale, this->h * this->scale};
     SDL_Rect Src = {this->w * currentFrame, 0, this->w, this->h};
     SDL_RenderCopy(ResourceManager::getInstance().gRenderer, loadedAnimation[currentAnimationPath], &Src, &Dest);
     if (framesPassed++ == frameDelay)

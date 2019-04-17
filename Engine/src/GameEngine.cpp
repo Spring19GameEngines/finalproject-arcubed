@@ -69,6 +69,7 @@ void GameEngine::update()
     rc->loadAnimation("Assets/art/character.png", 12);
     rc->setScale(3);
     rc->setFrameDelay(4);
+    rc->setCamCentered(true);
     music->components->addComponent(rc);
     SoundComponent *csc = static_cast<SoundComponent *>(music->components->getComponent("SOUNDCOMPONENT"));
     csc->playMusic(mus_path);
@@ -124,6 +125,8 @@ bool GameEngine::createWindow(int w, int h)
     printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
     return false;
   }
+  ResourceManager::getInstance().SCREEN_WIDTH = w;
+  ResourceManager::getInstance().SCREEN_HEIGHT = h;
   return true;
 }
 

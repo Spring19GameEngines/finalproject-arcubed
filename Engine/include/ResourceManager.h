@@ -70,6 +70,8 @@ public:
 
   std::vector<GameObject *> gameObjects;
   SDL_Renderer *gRenderer;
+  int SCREEN_WIDTH = 0;
+  int SCREEN_HEIGHT = 0;
   int camX = 0;
   int camY = 0;
 
